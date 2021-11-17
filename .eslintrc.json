@@ -12,6 +12,9 @@
   "rules": {
     "semi": ["warn", "always"],
     "quotes": ["error", "single"],
-    "require-await": "error"
+    "require-await": "error",
+    "no-console": "warn",
+    "no-multiple-empty-lines": "error",
+    "no-multi-spaces": "error"
   }
 }
