@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -16,42 +16,49 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    firstName: String,
-    lastName: String,
+    firstName: {
+      type: String,
+      default: "Unknown",
+    },
+    lastName: {
+      type: String,
+      default: "Unknown",
+    },
     isGameMaster: {
       type: Boolean,
-      required: true,
+      default: false,
     },
     birthDate: {
       type: Date,
     },
     status: {
       type: String,
-      required: true,
-      default: 'Hey Fellows, ready to dive in?',
+      default: "Hey Fellows, ready to dive in?",
     },
     avatar: {
       type: String,
-      required: true,
     },
     playerExp: {
       type: String,
-      enum: ['NONE', 'LOW', 'MEDIUM', 'HIGH'],
+      enum: ["NONE", "LOW", "MEDIUM", "HIGH"],
+      default: "LOW",
     },
     gameMasterExp: {
       type: String,
-      enum: ['NONE', 'LOW', 'MEDIUM', 'HIGH'],
+      enum: ["NONE", "LOW", "MEDIUM", "HIGH"],
+      default: "NONE",
     },
     characters: {
       type: [Schema.Types.ObjectId],
-      ref: 'Character',
+      ref: "Character",
     },
     location: {
       type: String,
+      default: "Unknown",
     },
     languages: {
       type: [String],
-      required: true,
+      default: ["Unknown"],
     },
   },
   {
@@ -59,6 +66,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model('User', userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;
