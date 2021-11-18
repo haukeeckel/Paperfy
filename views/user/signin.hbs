@@ -1,11 +1,8 @@
-{{#if errors.username}}{{/if}}
-{{#if errors.password}}{{/if}}
 <form method="POST" action="/signin">
   <label>Name</label>
-  <input name="userInput" type="text" placeholder="Enter your username" />
+  <input name="username" type="text" placeholder="Enter your username" />
 
   <label>Password</label>
   <input type="password" name="password" placeholder="Enter your Password" />
   <button>Sign In</button>
-
 </form>

@@ -1,3 +1,21 @@
 {{#if errors.username}}{{/if}}
 {{#if errors.email}}{{/if}}
 {{#if errors.password}}{{/if}}
+<form method="POST" action="/signup">
+  <label>Name</label>
+  <input name="username" type="text" placeholder="Enter your username" />
+
+  <label>email</label>
+  <input type="email" name="email" placeholder="Enter your email" />
+
+  <label>Password</label>
+  <input type="password" name="password" placeholder="Enter your Password" />
+
+  <label>conf Password</label>
+  <input
+    type="password"
+    name="confirmPassword"
+    placeholder="Enter your Password"
+  />
+  <button>Sign In</button>
+</form>
