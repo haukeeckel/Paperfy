@@ -51,6 +51,12 @@ app.use("/", index);
 const user = require("./routes/User.routes");
 app.use("/", user);
 
+const adventure = require("./routes/Adventure.routes");
+app.use("/", adventure);
+
+const character = require("./routes/Character.routes");
+app.use("/", character);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
