@@ -12,7 +12,7 @@ const loggedIn = (req, res, next) => {
   if (req.session.keks) {
     next();
   } else {
-    res.status(400).redirect("/signin");
+    res.status(400).redirect("/signup");
   }
 };
 
@@ -39,8 +39,8 @@ router.post("/signup", async (req, res, next) => {
   );
 
   if (notValid) {
-    res.status(400).json(errors);
-    throw new Error("User Inpupt Error: 400");
+    res.render("auth/signup", { errors });
+    return;
   }
 
   const avatar = `https://avatars.dicebear.com/api/croodles-neutral/${username}.svg`;
@@ -53,7 +53,8 @@ router.post("/signup", async (req, res, next) => {
     res.json(user);
   } catch (err) {
     if (err.code == 11000) {
-      res.status(400).send({ username: "Username is already taken." });
+      errors.username = "Username is already taken.";
+      res.render("auth/signup", { errors });
       return;
     }
     next(err);
@@ -71,8 +72,8 @@ router.post("/signin", async (req, res, next) => {
   const { notValid, errors } = validateLoginInput(userInput, password);
 
   if (notValid) {
-    res.status(400).json(errors);
-    throw new Error("User Inpupt Error: 400");
+    res.render("auth/signin", { errors });
+    return;
   }
 
   try {
@@ -82,8 +83,8 @@ router.post("/signin", async (req, res, next) => {
 
     if (!user) {
       errors.username = "User not found";
-      res.status(400).json(errors);
-      throw new Error("incorrect input");
+      res.render("auth/signin", { errors });
+      return;
     }
 
     const checkPW = bcrypt.compareSync(password, user.password);
@@ -97,11 +98,11 @@ router.post("/signin", async (req, res, next) => {
 
       req.session.keks = user;
 
-      res.status(200).json(user);
+      res.redirect("/me");
     } else {
       errors.password = "You entered a wrong Password";
-      res.status(400).json(errors);
-      throw new Error("incorrect input");
+      res.render("auth/signin", { errors });
+      return;
     }
   } catch (err) {
     next(err);
@@ -114,22 +115,17 @@ router.get("/logout", (req, res) => {
   res.status(200).redirect("/");
 });
 
-/* ------ Profile ------ */
+/* ------ Profile✅ ------ */
 router.get("/me", loggedIn, async (req, res, next) => {
-  const adventuresIds = req.session.keks.adventures;
-  const response = {
-    user: req.session.keks,
-  };
+  const { _id } = req.session.keks;
+  const loggedIn = true;
+
   try {
-    const adventures = await Adventure.find({
-      _id: { $in: [adventuresIds] },
-    }).limit(2);
+    const user = await User.findById({ _id });
 
-    response.adventures = adventures;
-
-    res.status(200).json(response);
+    res.render("user/profile", { user, loggedIn });
   } catch (err) {
-    next();
+    next(err);
   }
 });
 
@@ -138,9 +134,9 @@ router.get("/me/edit", loggedIn, async (req, res, next) => {
   const { _id } = req.session.keks;
 
   try {
-    const user = await User.findById(_id);
-    res.status(200).json(user);
-    // res.render("user/editProfile");
+    const user = await User.findById({ _id });
+
+    res.render("user/editProfile", { user });
   } catch (err) {
     next(err);
   }
@@ -216,16 +212,14 @@ router.post("/me/delete", loggedIn, async (req, res, next) => {
   }
 });
 
-// User Profile - my Click on Character Submenu
+// User Profile - Character Submenu
 router.get("/me/character", loggedIn, async (req, res) => {
   const { _id } = req.session.keks;
 
   try {
     if (req.session.keks.characters.length) {
-      const characters = await User.findById(_id)
-        .populate("characters")
-        .limit(6);
-      res.status(200).json(characters);
+      const user = await User.findById(_id).populate("characters").limit(6);
+      res.render("user/profileCharacter", { user });
     } else {
       res.sendStatus(200);
     }
@@ -234,7 +228,67 @@ router.get("/me/character", loggedIn, async (req, res) => {
   }
 });
 
-// User Profile - my Click on one Character
+router.get("/me/character/create", loggedIn, (_, res) => {
+  res.render("character/create.hbs");
+});
+
+router.post("/me/character/create", loggedIn, async (req, res, next) => {
+  const { _id: userId } = req.session.keks;
+  let {
+    characterName,
+    portrait,
+    gender,
+    age,
+    healthPoints,
+    figure,
+    religion,
+    profession,
+    maritalStatus,
+    physical,
+    knowledge,
+    social,
+    inventory,
+    notes,
+  } = req.body;
+
+  if (!portrait) {
+    portrait = `https://avatars.dicebear.com/api/croodles-neutral/${characterName
+      .split(" ")
+      .join("")}.svg`;
+  }
+
+  try {
+    const character = await Character.create({
+      userId,
+      characterName,
+      portrait,
+      gender,
+      age,
+      healthPoints,
+      figure,
+      religion,
+      profession,
+      maritalStatus,
+      physical,
+      knowledge,
+      social,
+      inventory,
+      notes,
+      state: "saved",
+    });
+
+    await User.findOneAndUpdate(
+      { _id: userId },
+      { $push: { characters: character } }
+    );
+    req.session.keks.characters.push(character._id);
+
+    res.status(200).json(character);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/me/character/:_id", loggedIn, async (req, res, next) => {
   const { _id } = req.params;
 
@@ -243,6 +297,22 @@ router.get("/me/character/:_id", loggedIn, async (req, res, next) => {
     res.status(200).json(character);
   } catch (err) {
     next(err);
+  }
+});
+
+// User Profile - Adventure Submenu
+router.get("/me/adventure", loggedIn, async (req, res) => {
+  const { _id } = req.session.keks;
+
+  try {
+    if (req.session.keks.adventures.length) {
+      const user = await User.findById(_id).populate("adventures").limit(6);
+      res.render("user/profileAdventure", { user });
+    } else {
+      res.sendStatus(200);
+    }
+  } catch (err) {
+    res.sendStatus(400);
   }
 });
 
@@ -291,20 +361,55 @@ router.post("me/adventure/create", isGameMaster, async (req, res, next) => {
   }
 });
 
-router.get("/me/adventures", loggedIn, async (req, res) => {
-  const { _id } = req.session.keks;
+router.get("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
+  const { _id } = req.params;
 
   try {
-    if (req.session.keks.adventures.length) {
-      const adventures = await User.findById(_id)
-        .populate("adventures")
-        .limit(6);
-      res.status(200).json(adventures);
-    } else {
-      res.sendStatus(200);
-    }
+    const adventure = await Adventure.findById(_id);
+    res.render("adventure/edit", adventure);
   } catch (err) {
-    res.sendStatus(400);
+    next(err);
+  }
+});
+
+router.post("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
+  const { _id } = req.params;
+  const {
+    gameMasterId,
+    adventureName,
+    gameSystem,
+    startDate,
+    groupSize,
+    plattform,
+    language,
+    expierience,
+    estimatedTime,
+    communication,
+    minAge,
+    plot,
+  } = req.body;
+
+  try {
+    const adventure = await Adventure.findByIdAndUpdate(
+      { _id },
+      {
+        gameMasterId,
+        adventureName,
+        gameSystem,
+        startDate,
+        groupSize,
+        plattform,
+        language,
+        expierience,
+        estimatedTime,
+        communication,
+        minAge,
+        plot,
+      }
+    );
+    res.status(200).json(adventure);
+  } catch (err) {
+    next(err);
   }
 });
 

@@ -39,10 +39,10 @@ module.exports.validateRegisterInput = (
   };
 };
 
-module.exports.validateLoginInput = (username, password) => {
+module.exports.validateLoginInput = (userInput, password) => {
   const errors = {};
 
-  if (username.trim() === "") {
+  if (userInput.trim() === "") {
     errors.username = "Username must not be empty";
   }
 
