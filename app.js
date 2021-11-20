@@ -38,7 +38,7 @@ app.use(
       maxAge: 1000 * 24 * 60 * 60,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
+      mongoUrl: process.env.MONGODB_URI || "mongodb://mongo/paperfy",
       ttl: 24 * 60 * 60,
     }),
   })
