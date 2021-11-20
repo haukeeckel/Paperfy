@@ -1,3 +1,24 @@
 <h1>Sign In</h1>
-{{#if errors.username}}{{/if}}
-{{#if errors.password}}{{/if}}
+<form class="flex-clm-center" action="/signin" method="POST">
+  <label for="userInput">Username or Email</label>
+  <input
+    id="userInput"
+    name="userInput"
+    type="text"
+    placeholder="Enter your Username or Email"
+    value=""
+  />
+  <p>{{#if errors}}{{errors.username}}{{/if}}</p>
+  <p>{{#if errors}}{{errors.email}}{{/if}}</p>
+  <label for="password">Password</label>
+  <input
+    id="password"
+    name="password"
+    type="password"
+    placeholder="Enter your Password"
+    value=""
+  />
+  <p>{{#if errors}}{{errors.password}}{{/if}}</p>
+
+  <button>Sign In</button>
+</form>
