@@ -11,8 +11,8 @@ const express = require("express");
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
-// const hbs = require("hbs");
-
+const hbs = require("hbs");
+hbs.registerPartials("views" + "/partials");
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
@@ -38,7 +38,7 @@ app.use(
       maxAge: 1000 * 24 * 60 * 60,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://mongo/paperfy",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/paperfy",
       ttl: 24 * 60 * 60,
     }),
   })
@@ -50,6 +50,12 @@ app.use("/", index);
 
 const user = require("./routes/User.routes");
 app.use("/", user);
+
+const adventure = require("./routes/Adventure.routes");
+app.use("/", adventure);
+
+const character = require("./routes/Character.routes");
+app.use("/", character);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

@@ -1,18 +1,69 @@
-<html lang='en'>
-
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
-  <body>
+  <body class="flex-clm-center">
 
-    {{{body}}}
+    <header class="flex-row-center">
+      <div class="header-nav flex-row-center">
+        <a href="/"><img
+            id="header-logo"
+            src="/images/Logo_org.svg"
+            alt="Paperfy"
+          /></a>
+        <a href="/"><h1 id="header-title">Paperfy</h1></a>
+        <nav>
+          <ul class="header-nav-items">
+            <li class="header-nav-item" id="nav-home"><a href="/"><h2
+                >Home</h2></a></li>
+            <li class="header-nav-item" id="nav-find-group">
+              <a href="#"><h2>Find Group</h2></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <form id="header-searchbar-form" lass="flex-row-center">
+        <input
+          type="text"
+          name="searchbar"
+          id="header-searchbar"
+          placeholder="Search"
+        />
+      </form>
+      {{#if loggedIn}}
+        <div id="header-user-action" class="flex-row-center">
+          <a href="/me"><button
+              class="header-btn"
+              id="login-header"
+            >Profile</button></a>
+          <a href="/logout"><button class="header-btn" id="sign-in-header">Log
+              out</button></a>
+        </div>
+      {{/if}}
+      {{#unless loggedIn}}
+        <div id="header-user-action" class="flex-row-center">
+          <a href="/signin"><button
+              class="header-btn"
+              id="login-header"
+            >Login</button></a>
+          <a href="/signup"><button class="header-btn" id="sign-in-header">Sign
+              up</button></a>
+        </div>
+      {{/unless}}
+    </header>
 
-    <script src='/js/script.js'></script>
+    <main class="flex-row-center">
+
+      {{{body}}}
+
+    </main>
+
+    <script src="/js/script.js"></script>
   </body>
 
 </html>

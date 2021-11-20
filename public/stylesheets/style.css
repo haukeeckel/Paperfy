@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Font */
+  --blueGray: #374957;
+  /* Colors */
+  --mainColor: #0dffcd;
+  --lightGrey: #dadada;
+  --lighterGrey: #f0f0f0;
+
+  /* Accents */
+  --accLightBlue: #78e5ff;
+  --accOrange: #ff6933;
+  --accYellow: #ffc95e;
+  --accGreen: #3a8c4e;
+  --accRed: #d92626;
+}
+
+/* Global */
+* {
+  padding: 0;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  font-family: 'Reem Kufi', sans-serif;
+
+  text-decoration: none;
+  list-style-type: none;
+}
+
+/* General */
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-clm-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  color: var(--blueGray);
+  background-color: var(--lightGrey);
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  text-decoration: underline;
+  margin-block-end: 0.5rem;
+}
+
+a {
+  color: var(--blueGray);
+}
+
+/* Header */
+header {
+  height: 4rem;
+  width: 100vw;
+  position: absolute;
+  background-color: var(--mainColor);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Nav-Bar */
+.header-nav {
+  width: 33%;
+  height: 4rem;
+  min-width: 28rem;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+#header-logo {
+  height: 3rem;
+  width: auto;
+  flex-shrink: 0;
+  padding: 0 1rem;
+}
+
+#header-title {
+  padding-right: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.header-nav-items {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-nav-item {
+  display: inline-block;
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.header-nav-item:hover a {
+  text-decoration: underline;
+}
+
+#header-searchbar-form {
+  width: 33%;
+  flex-shrink: 1;
+  justify-content: center;
+}
+
+#header-searchbar {
+  width: 100%;
+}
+
+#header-user-action {
+  width: 33%;
+  flex-shrink: 1;
+  justify-content: flex-end;
+}
+
+.header-btn {
+  margin: 0 0.5rem;
+}
+
+main {
+  width: 73%;
+  min-width: 768px;
+  margin-block-start: 4rem;
+  background-color: var(--lighterGrey);
+}
+
+/* User-Section */
+.sec {
+  margin-block-start: 2rem;
+}
+#user-data-section {
+  width: 25%;
+  min-width: 300px;
+  justify-content: center;
+}
+
+#avatar {
+  width: 10rem;
+  height: auto;
+  border: var(--blueGray) 3px solid;
+  border-radius: 15px;
+}
+
+#user-data {
+  margin-block-start: 2rem;
+  margin-block-end: 2rem;
+  background-color: #fff;
+  border: var(--blueGray) 2px solid;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+.user-data-description {
+  padding-right: 1rem;
+  border-right: var(--blueGray) 2px solid;
+  font-weight: 600;
+}
+
+.user-data-items {
+  padding-left: 1rem;
+}
+
+/* .user-data-item {
+
+} */
+
+/* Overview-Section */
+#user-overview-section {
+  align-self: start;
+  margin-block-start: 5rem;
+  width: 75%;
+}
+/* User Nav */
+.user-overview-items {
+  margin-block-end: 1rem;
+}
+
+.user-overview-item {
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#user-overview:hover {
+  color: var(--accYellow);
+  text-decoration: underline;
+}
+
+#characters-overview:hover {
+  color: var(--accLightBlue);
+  text-decoration: underline;
+}
+
+#mastery-overview:hover {
+  color: var(--accOrange);
+  text-decoration: underline;
+}
+
+/* User */
+.user-description {
+  width: 90%;
+  margin-block-start: 1.5rem;
+  margin-block-end: 1.5rem;
+  background-color: #fff;
+  border: var(--blueGray) 2px solid;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+.user-profil-showcase-container {
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.user-profil-showcase-title {
+  width: 100%;
+}
+
+.user-profil-showcase {
+  width: 40%;
+  height: 7rem;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  background-color: var(--accOrange);
+  border: var(--blueGray) 2px solid;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}

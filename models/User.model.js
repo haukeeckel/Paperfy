@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: String,
       default: "Unknown",
     },
+    isPlayer: {
+      type: Boolean,
+      default: true,
+    },
     isGameMaster: {
       type: Boolean,
       default: false,
@@ -51,6 +55,10 @@ const userSchema = new Schema(
     characters: {
       type: [Schema.Types.ObjectId],
       ref: "Character",
+    },
+    adventures: {
+      type: [Schema.Types.ObjectId],
+      ref: "Adventure",
     },
     location: {
       type: String,
