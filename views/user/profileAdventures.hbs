@@ -5,10 +5,11 @@
 
   <article class="user-profil-showcase-container flex-row-center">
   <h3 class="user-profil-showcase-title">Adventures:</h3>
-  
+  {{#if isMe}}
     <a href="" class="user-profil-showcase-create">Create a new Adventure</a>
+  {{/if}}
   {{#each user.adventures}}
-  <a href="/adventure/{{this._id}}" class="user-profil-showcase">{{this.adventureName}}</a>
+    <a href="/adventure/{{this._id}}" class="user-profil-showcase">{{this.adventureName}}</a>
   {{/each}}
 
 </article>
