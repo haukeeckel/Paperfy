@@ -6,19 +6,41 @@
     <div>
       <ul class="user-data-description">
         <li class="user-data-item">Username:</li>
+<<<<<<< HEAD
         <li class="user-data-item">Age:</li>
         <li class="user-data-item">Located in:</li>
         <li class="user-data-item">Language</li>
+=======
+        {{#if user.age}}<li class="user-data-item">Age:</li>{{/if}}
+        {{#if user.location}} <li class="user-data-item">Located in:</li>{{/if}}
+        {{#if user.languages}}<li class="user-data-item">Language</li>{{/if}}
+>>>>>>> origin/develop
       </ul>
     </div>
     <div>
       <ul class="user-data-items">
         <li class="user-data-item">{{user.username}}</li>
+<<<<<<< HEAD
         <li class="user-data-item">{{user.location}}</li>
         <li class="user-data-item">{{user.location}}</li>
         <li class="user-data-item">german, english</li>
+=======
+        <li class="user-data-item">{{user.age}}</li>
+        <li class="user-data-item">{{user.location}}</li>
+        <li class="user-data-item">{{user.languages}}</li>
+>>>>>>> origin/develop
       </ul>
     </div>
   </div>
   <div id="user-contact"></div>
+<<<<<<< HEAD
+=======
+  <div id="user-experience">
+    <h4>Experience</h4>
+    {{#if user.isPlayer}}<p>Player</p>{{/if}}
+    {{#if user.isGameMaster}}<p>Game Master</p>{{/if}}
+    {{#if user.isPlayer}}<p>{{user.playerExp}}</p>{{/if}}
+    {{#if user.isGameMaster}}<p>{{user.gameMasterExp}}</p>{{/if}}
+  </div>
+>>>>>>> origin/develop
 </section>

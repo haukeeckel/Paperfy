@@ -1,0 +1,137 @@
+[{
+  "_id": {
+    "$oid": "6199219a05ab4dbecabd1171"
+  },
+  "username": "Hauke",
+  "email": "Hauke@paperfy.de",
+  "password": "$2a$12$WCMYNP2rV1.V1NNU7uwKAuLwrDbmBYXKyO9lAgPiAAA2kARr7BK3m",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": false,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Hauke.svg",
+  "playerExp": "LOW",
+  "gameMasterExp": "NONE",
+  "characters": [
+    {
+      "$oid": "6199248d3fa4a5d6865c5bea"
+    },
+    {
+      "$oid": "61992537b728ddbd7f986d10"
+    }
+  ],
+  "adventures": [],
+  "location": "Unknown",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-20T16:26:02.566Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:39:11.209Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61992223dfb7a0cd3495e14c"
+  },
+  "username": "Maik",
+  "email": "maik@paperfy.de",
+  "password": "$2a$12$vQPuym51kMIjiF3HXYlMcOnssg/Rzycpms40IgZRhfJFmma8DOLvG",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": true,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Maik.svg",
+  "playerExp": "MEDIUM",
+  "gameMasterExp": "LOW",
+  "characters": [
+    {
+      "$oid": "6199255bb728ddbd7f986d11"
+    },
+    {
+      "$oid": "61992571b728ddbd7f986d12"
+    }
+  ],
+  "adventures": [],
+  "location": "Unknown",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-20T16:28:19.508Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:28:19.508Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "username": "DM-Anish",
+  "email": "dm@paperfy.de",
+  "password": "$2a$12$MoGiswtjVsiSYvKge7jDMuuGmUjfFV1H5uMeRlNDxJFaPZmz9.fgy",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": true,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/DM-Anish.svg",
+  "playerExp": "HIGH",
+  "gameMasterExp": "HIGH",
+  "characters": [],
+  "adventures": [],
+  "location": "Unknown",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-20T16:29:07.455Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:29:07.455Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619922b8b972d209af0e19db"
+  },
+  "username": "Tester",
+  "email": "tester@paperfy.de",
+  "password": "$2a$12$.9vEI.a1oIxKwIhIJTH6YOnEDQqMVotj1MOsIGsLufdIJMF/upSvS",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": true,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Tester.svg",
+  "playerExp": "MEDIUM",
+  "gameMasterExp": "MEDIUM",
+  "characters": [
+    {
+      "$oid": "61995063b728ddbd7f986d3d"
+    },
+    {
+      "$oid": "61995073b728ddbd7f986d3e"
+    },
+    {
+      "$oid": "6199507fb728ddbd7f986d3f"
+    }
+  ],
+  "adventures": [],
+  "location": "Unknown",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-20T16:30:48.214Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:30:48.214Z"
+  },
+  "__v": 0
+}]

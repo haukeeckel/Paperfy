@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "61995226b728ddbd7f986d4a"
+  },
+  "adventureName": "testGame",
+  "gameSystem": "How to be a Hero",
+  "startDate": "2021-11-18T21:49:25.915Z",
+  "groupSize": 5,
+  "plattform": "Zoom",
+  "language": "german",
+  "expierience": "LOW",
+  "estimatedTime": 120,
+  "communication": "CAM AND VOICE",
+  "minAge": 18,
+  "plot": "TEST PAPERFY ADVENTURES",
+  "applicantsIds": [
+    {
+      "$oid": "61995063b728ddbd7f986d3d"
+    }
+  ],
+  "gameMasterId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "userIds": [
+    {
+      "$oid": "6199219a05ab4dbecabd1171"
+    },
+    {
+      "$oid": "61992223dfb7a0cd3495e14c"
+    }
+  ],
+  "participantIds": [
+    {
+      "$oid": "6199248d3fa4a5d6865c5bea"
+    },
+    {
+      "$oid": "6199255bb728ddbd7f986d11"
+    }
+  ],
+  "isActive": true,
+  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg"
+},{
+  "_id": {
+    "$oid": "619959e1b728ddbd7f986d5c"
+  },
+  "adventureName": "closedGame",
+  "gameSystem": "How to be a Hero",
+  "startDate": "2021-11-18T21:49:25.915Z",
+  "groupSize": 5,
+  "plattform": "Zoom",
+  "language": "german",
+  "expierience": "LOW",
+  "estimatedTime": 120,
+  "communication": "CAM AND VOICE",
+  "minAge": 18,
+  "plot": "TEST PAPERFY ADVENTURES",
+  "gameMasterId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "userIds": [
+    {
+      "$oid": "6199219a05ab4dbecabd1171"
+    },
+    {
+      "$oid": "61992223dfb7a0cd3495e14c"
+    },
+    {
+      "$oid": "619922b8b972d209af0e19db"
+    }
+  ],
+  "participantIds": [
+    {
+      "$oid": "6199248d3fa4a5d6865c5bea"
+    },
+    {
+      "$oid": "6199255bb728ddbd7f986d11"
+    },
+    {
+      "$oid": "61995063b728ddbd7f986d3d"
+    }
+  ],
+  "isActive": false,
+  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg"
+}]
