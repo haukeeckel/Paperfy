@@ -1,0 +1,365 @@
+[{
+  "_id": {
+    "$oid": "6199248d3fa4a5d6865c5bea"
+  },
+  "characterName": "Howling Hauke",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "6199219a05ab4dbecabd1171"
+  }
+},{
+  "_id": {
+    "$oid": "61992537b728ddbd7f986d10"
+  },
+  "characterName": "Hunting Hauke",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "6199219a05ab4dbecabd1171"
+  }
+},{
+  "_id": {
+    "$oid": "6199255bb728ddbd7f986d11"
+  },
+  "characterName": "Master Maik",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "61992223dfb7a0cd3495e14c"
+  }
+},{
+  "_id": {
+    "$oid": "61992571b728ddbd7f986d12"
+  },
+  "characterName": "Mortal Maik",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "61992223dfb7a0cd3495e14c"
+  }
+},{
+  "_id": {
+    "$oid": "61995063b728ddbd7f986d3d"
+  },
+  "characterName": "Testa the Tester",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "619922b8b972d209af0e19db"
+  }
+},{
+  "_id": {
+    "$oid": "61995073b728ddbd7f986d3e"
+  },
+  "characterName": "Alpha the Tester",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "619922b8b972d209af0e19db"
+  }
+},{
+  "_id": {
+    "$oid": "6199507fb728ddbd7f986d3f"
+  },
+  "characterName": "Beta the Tester",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/HowlingHauke.svg",
+  "gender": "Male",
+  "age": 18,
+  "healthPoints": 55,
+  "figure": "fat",
+  "religion": "Pastafari",
+  "profession": "Priest",
+  "maritalStatus": "Single",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "testing": 100
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {
+      "Postman": 100
+    },
+    {
+      "JavaScript": 100
+    }
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "tests": 100
+    }
+  ],
+  "inventory": [
+    "Pickachu VMAX Fullart",
+    "PIP-Boy Bobblehead"
+  ],
+  "notes": [
+    "go thought all the tests"
+  ],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-20T16:38:37.656Z"
+  },
+  "__v": 0,
+  "userId": {
+    "$oid": "619922b8b972d209af0e19db"
+  }
+}]

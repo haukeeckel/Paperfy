@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap");
 
 :root {
   /* Font */
@@ -25,7 +25,7 @@
   overflow-x: hidden;
   box-sizing: border-box;
 
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: "Reem Kufi", sans-serif;
 
   text-decoration: none;
   list-style-type: none;
@@ -238,6 +238,17 @@ main {
   margin-block-start: 1rem;
   margin-block-end: 1rem;
   background-color: var(--accOrange);
+  border: var(--blueGray) 2px solid;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+.user-profil-showcase-create {
+  width: 40%;
+  height: 7rem;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  background-color: var(--lightGrey);
   border: var(--blueGray) 2px solid;
   border-radius: 15px;
   padding: 0.5rem 1rem;

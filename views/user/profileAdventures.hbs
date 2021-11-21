@@ -1,0 +1,15 @@
+{{> userProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> userSubmenu}}
+
+  <article class="user-profil-showcase-container flex-row-center">
+  <h3 class="user-profil-showcase-title">Adventures:</h3>
+  
+    <a href="" class="user-profil-showcase-create">Create a new Adventure</a>
+  {{#each user.adventures}}
+  <a href="/adventure/{{this._id}}" class="user-profil-showcase">{{this.adventureName}}</a>
+  {{/each}}
+
+</article>
+</section>

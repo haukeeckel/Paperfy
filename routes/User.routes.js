@@ -49,8 +49,8 @@ router.post("/signup", async (req, res, next) => {
   const hash = bcrypt.hashSync(password, salt);
 
   try {
-    const user = await User.create({ username, email, password: hash, avatar });
-    res.json(user);
+    await User.create({ username, email, password: hash, avatar });
+    res.render("index");
   } catch (err) {
     if (err.code == 11000) {
       errors.username = "Username is already taken.";
@@ -121,8 +121,11 @@ router.get("/me", loggedIn, async (req, res, next) => {
   const loggedIn = true;
 
   try {
-    const user = await User.findById({ _id });
+    const user = await User.findById({ _id }).populate("adventures");
 
+    if (user.adventures.length >= 2) {
+      user.adventures = user.adventures.slice(0, user.adventures.length - 2);
+    }
     res.render("user/profile", { user, loggedIn });
   } catch (err) {
     next(err);
@@ -132,11 +135,12 @@ router.get("/me", loggedIn, async (req, res, next) => {
 /* ------ Edit⚠️ ------ */
 router.get("/me/edit", loggedIn, async (req, res, next) => {
   const { _id } = req.session.keks;
+  const loggedIn = true;
 
   try {
     const user = await User.findById({ _id });
 
-    res.render("user/editProfile", { user });
+    res.render("user/editProfile", { user, loggedIn });
   } catch (err) {
     next(err);
   }
@@ -212,16 +216,22 @@ router.post("/me/delete", loggedIn, async (req, res, next) => {
   }
 });
 
-// User Profile - Character Submenu
+// User Profile - Character Submenu ✅
 router.get("/me/character", loggedIn, async (req, res) => {
   const { _id } = req.session.keks;
+  const loggedIn = true;
 
   try {
     if (req.session.keks.characters.length) {
-      const user = await User.findById(_id).populate("characters").limit(6);
-      res.render("user/profileCharacter", { user });
+      const user = await User.findById(_id, {
+        characters: { $slice: 5 },
+      }).populate("characters");
+
+      res.render("user/profileCharacters", { user, loggedIn });
     } else {
-      res.sendStatus(200);
+      const user = await User.findById(_id);
+
+      res.render("user/profileCharacters", { user, loggedIn });
     }
   } catch (err) {
     res.sendStatus(400);
@@ -232,9 +242,10 @@ router.get("/me/character/create", loggedIn, (_, res) => {
   res.render("character/create.hbs");
 });
 
-router.post("/me/character/create", loggedIn, async (req, res, next) => {
-  const { _id: userId } = req.session.keks;
+router.post("/me/character/create", async (req, res, next) => {
+  // const { _id: userId } = req.session.keks;
   let {
+    userId,
     characterName,
     portrait,
     gender,
@@ -278,7 +289,7 @@ router.post("/me/character/create", loggedIn, async (req, res, next) => {
     });
 
     await User.findOneAndUpdate(
-      { _id: userId },
+      { userId },
       { $push: { characters: character } }
     );
     req.session.keks.characters.push(character._id);
@@ -300,27 +311,33 @@ router.get("/me/character/:_id", loggedIn, async (req, res, next) => {
   }
 });
 
-// User Profile - Adventure Submenu
+// User Profile - Adventure Submenu ✅
 router.get("/me/adventure", loggedIn, async (req, res) => {
   const { _id } = req.session.keks;
+  const loggedIn = true;
 
   try {
     if (req.session.keks.adventures.length) {
-      const user = await User.findById(_id).populate("adventures").limit(6);
-      res.render("user/profileAdventure", { user });
+      const user = await User.findById(_id, {
+        adventures: { $slice: 5 },
+      }).populate("adventures");
+
+      res.render("user/profileAdventures", { user, loggedIn });
     } else {
-      res.sendStatus(200);
+      const user = await User.findById(_id);
+
+      res.render("user/profileAdventures", { user, loggedIn });
     }
   } catch (err) {
     res.sendStatus(400);
   }
 });
 
-router.get("me/adventure/create", isGameMaster, (_, res) => {
+router.get("/me/adventure/create", isGameMaster, (_, res) => {
   res.render("adventure/create");
 });
 
-router.post("me/adventure/create", isGameMaster, async (req, res, next) => {
+router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
   const {
     adventureName,
     gameSystem,
