@@ -38,7 +38,7 @@ app.use(
       maxAge: 1000 * 24 * 60 * 60,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://mongo/paperfy",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/paperfy",
       ttl: 24 * 60 * 60,
     }),
   })
@@ -56,6 +56,9 @@ app.use("/", adventure);
 
 const character = require("./routes/Character.routes");
 app.use("/", character);
+
+const filter = require("./routes/Filter.routes");
+app.use("/", filter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
