@@ -5,8 +5,9 @@
 
   <article class="user-profil-showcase-container flex-row-center">
   <h3 class="user-profil-showcase-title">Characters:</h3>
-  
+  {{#if isMe}}
     <a href="" class="user-profil-showcase-create">Create a new Characters</a>
+  {{/if}}
   {{#each user.characters}}
     <a href="/character/{{this._id}}" class="user-profil-showcase">{{this.characterName}}</a>
   {{/each}}

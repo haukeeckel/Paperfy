@@ -9,6 +9,11 @@
 <article class="user-profil-showcase-container flex-row-center">
   <h3 class="user-profil-showcase-title">Last Adventures:</h3>
   {{#each user.adventures}}
-    <div class="user-profil-showcase"></div>
+    {{#unless this.isActive}}
+      <a
+        href="/adventure/{{this._id}}"
+        class="user-profil-showcase"
+      >{{this.adventureName}}</a>
+    {{/unless}}
   {{/each}}
 </article>

@@ -23,6 +23,14 @@ const isGameMaster = (req, res, next) => {
     res.status(400).redirect("/signin");
   }
 };
+
+const isItMe = (_id, cookie) => {
+  if (_id === cookie) {
+    return true;
+  } else {
+    return false;
+  }
+};
 /* ------ Signup✅ ------ */
 router.get("/signup", (_, res) => {
   res.render("auth/signup");
@@ -115,25 +123,87 @@ router.get("/logout", (req, res) => {
   res.status(200).redirect("/");
 });
 
-/* ------ Profile✅ ------ */
-router.get("/me", loggedIn, async (req, res, next) => {
+/* ------ my Profile✅ ------ */
+router.get("/me", async (req, res, next) => {
   const { _id } = req.session.keks;
-  const loggedIn = true;
+  const loggedIn = !!req.session.keks;
 
   try {
     const user = await User.findById({ _id }).populate("adventures");
 
-    if (user.adventures.length >= 2) {
+    if (user.adventures.length >= 3) {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
+
     res.render("user/profile", { user, loggedIn });
   } catch (err) {
     next(err);
   }
 });
 
+/* ------ every Profile✅ ------ */
+router.get("/user/:_id", async (req, res, next) => {
+  const { _id } = req.params;
+  const loggedIn = !!req.session.keks;
+  const isMe = isItMe(_id, req.session.keks);
+
+  try {
+    const user = await User.findById({ _id }).populate("adventures");
+
+    if (user.adventures.length >= 3) {
+      user.adventures = user.adventures.slice(0, user.adventures.length - 2);
+    }
+
+    res.render("user/profile", { user, loggedIn, isMe });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// User Profile - Character Submenu ✅
+router.get("/user/:_id/character", async (req, res) => {
+  const { _id } = req.params;
+  const loggedIn = !!req.session.keks;
+  const isMe = isItMe(_id, req.session.keks._id);
+
+  try {
+    const user = await User.findById(_id, {
+      characters: { $slice: 5 },
+    }).populate("characters");
+
+    res.render("user/profileCharacters", { user, loggedIn, isMe });
+  } catch (err) {
+    res.sendStatus(400);
+  }
+});
+
+// User Profile - Adventure Submenu ✅
+router.get("/user/:_id/adventure", async (req, res) => {
+  const { _id } = req.params;
+  const loggedIn = !!req.session.keks;
+  const isMe = isItMe(_id, req.session.keks._id);
+
+  try {
+    const user = await User.findById(_id, {
+      adventures: { $slice: 5 },
+    }).populate("adventures");
+
+    user.adventures = user.adventures.filter((adventure) => {
+      if (adventure.gameMasterId.toString() == _id) {
+        return adventure;
+      }
+    });
+
+    await user.populate("adventures");
+
+    res.render("user/profileAdventures", { user, loggedIn, isMe });
+  } catch (err) {
+    res.sendStatus(400);
+  }
+});
+
 /* ------ Edit⚠️ ------ */
-router.get("/me/edit", loggedIn, async (req, res, next) => {
+router.get("/me/edit", async (req, res, next) => {
   const { _id } = req.session.keks;
   const loggedIn = true;
 
@@ -146,7 +216,7 @@ router.get("/me/edit", loggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/me/edit", loggedIn, async (req, res, next) => {
+router.post("/me/edit", async (req, res, next) => {
   const { _id } = req.session.keks;
   const {
     username,
@@ -189,11 +259,11 @@ router.post("/me/edit", loggedIn, async (req, res, next) => {
 
 /* ------ Delete⚠️ ------ */
 // TODO Delete all Characters and set Adventure-Links to ['DELETED]'
-router.get("/me/delete", loggedIn, (req, res) => {
+router.get("/me/delete", (req, res) => {
   res.render("user/profile");
 });
 
-router.post("/me/delete", loggedIn, async (req, res, next) => {
+router.post("/me/delete", async (req, res, next) => {
   const { password } = req.body;
   const { _id } = req.session.keks;
 
@@ -216,28 +286,8 @@ router.post("/me/delete", loggedIn, async (req, res, next) => {
   }
 });
 
-// User Profile - Character Submenu ✅
-router.get("/me/character", loggedIn, async (req, res) => {
-  const { _id } = req.session.keks;
-  const loggedIn = true;
-
-  try {
-    if (req.session.keks.characters.length) {
-      const user = await User.findById(_id, {
-        characters: { $slice: 5 },
-      }).populate("characters");
-
-      res.render("user/profileCharacters", { user, loggedIn });
-    } else {
-      const user = await User.findById(_id);
-
-      res.render("user/profileCharacters", { user, loggedIn });
-    }
-  } catch (err) {
-    res.sendStatus(400);
-  }
-});
-
+// ----------------------------------------
+// to sort:
 router.get("/me/character/create", loggedIn, (_, res) => {
   res.render("character/create.hbs");
 });
@@ -297,39 +347,6 @@ router.post("/me/character/create", async (req, res, next) => {
     res.status(200).json(character);
   } catch (err) {
     next(err);
-  }
-});
-
-router.get("/me/character/:_id", loggedIn, async (req, res, next) => {
-  const { _id } = req.params;
-
-  try {
-    const character = await Character.findById(_id);
-    res.status(200).json(character);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// User Profile - Adventure Submenu ✅
-router.get("/me/adventure", loggedIn, async (req, res) => {
-  const { _id } = req.session.keks;
-  const loggedIn = true;
-
-  try {
-    if (req.session.keks.adventures.length) {
-      const user = await User.findById(_id, {
-        adventures: { $slice: 5 },
-      }).populate("adventures");
-
-      res.render("user/profileAdventures", { user, loggedIn });
-    } else {
-      const user = await User.findById(_id);
-
-      res.render("user/profileAdventures", { user, loggedIn });
-    }
-  } catch (err) {
-    res.sendStatus(400);
   }
 });
 
