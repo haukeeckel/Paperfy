@@ -253,3 +253,60 @@ main {
   border-radius: 15px;
   padding: 0.5rem 1rem;
 }
+
+#filterPage {
+  display: flex;
+  width: 100vw;
+  text-align: center;
+  flex-direction: column;
+}
+
+#adventureSection {
+}
+
+.adventureListing {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 5px solid black;
+  border-radius: 5px;
+  background-color: var(--accOrange);
+}
+
+.adventureListing h3 {
+  border: 5px solid black;
+  font-size: 1.5rem;
+  padding: 0.2rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.adventureListing p {
+  border: 5px solid black;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+}
+
+.filterPicture {
+  border: 5px solid black;
+  padding: 0.7rem;
+  background-color: white;
+  border-radius: 5px;
+  height: 10rem;
+}
+
+.adventureContentSpan  {
+  flex-direction: column;
+  padding: 0 0 0 1rem;
+}
+
+.playerCount {
+  font-size: 1.5rem;
+}
