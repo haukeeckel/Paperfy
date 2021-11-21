@@ -1,0 +1,15 @@
+{{> userProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> userSubmenu}}
+
+  <article class="user-profil-showcase-container flex-row-center">
+  <h3 class="user-profil-showcase-title">Characters:</h3>
+  
+    <a href="" class="user-profil-showcase-create">Create a new Characters</a>
+  {{#each user.characters}}
+    <a href="/character/{{this._id}}" class="user-profil-showcase">{{this.characterName}}</a>
+  {{/each}}
+
+</article>
+</section>

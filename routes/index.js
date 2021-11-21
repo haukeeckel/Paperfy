@@ -1,8 +1,13 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
 /* GET home page */
-router.get('/', (_, res) => {
-  res.render('index');
+router.get("/", (req, res) => {
+  let loggedIn = false;
+  if (req.session.keks) {
+    loggedIn = true;
+  }
+
+  res.render("index", { loggedIn });
 });
 
 module.exports = router;
