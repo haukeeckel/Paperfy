@@ -1,0 +1,82 @@
+{{> userProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> userSubmenu}}
+  {{> charactersSubmenu}}
+
+  <article class="user-profil-showcase-container flex-row-center">
+    <h3 class="user-profil-showcase-title">Info:</h3>
+    <section class="character-info">
+      <article>
+        <h4>Name</h4>
+        <h4>{{character.characterName}}</h4>
+        <p>Gender</p>
+        <p>{{character.gender}}</p>
+        <p>Figure</p>
+        <p>{{character.figure}}</p>
+        <p>Age</p>
+        <p>{{character.age}}</p>
+        <p>Health Points</p>
+        <p>{{character.healthPoints}}</p>
+        <p>Religion</p>
+        <p>{{character.religion}}</p>
+        <p>Material Status</p>
+        <p>{{character.maritalStatus}}</p>
+        <p>Profession</p>
+        <p>{{character.profession}}</p>
+      </article>
+      <article>
+        <img src="{{character.portrait}}" alt="portrait" />
+      </article>
+    </section>
+    <section class="character-properties">
+      <article>
+        <h4>physical</h4>
+        {{#each character.physical}}
+          {{#each this}}
+            <p>
+              <span>{{@key}}</span>
+              <span>{{this}}</span>
+            </p>
+          {{/each}}
+        {{/each}}
+      </article>
+      <article>
+        <h4>knowledge</h4>
+        {{#each character.knowledge}}
+          {{#each this}}
+            <p>
+              <span>{{@key}}</span>
+              <span>{{this}}</span>
+            </p>
+          {{/each}}
+        {{/each}}
+      </article>
+      <article>
+        <h4>social</h4>
+        {{#each character.social}}
+          {{#each this}}
+          <p>
+            <span>{{@key}}</span>
+            <span>{{this}}</span>
+          </p>
+          {{/each}}
+        {{/each}}
+      </article>
+    </section>
+    <section class="character-side-info">
+      <article>
+        <h4>Inventory</h4>
+        {{#each character.inventory}}
+          <p>{{this}}</p>
+        {{/each}}
+      </article>
+      <article>
+        <h4>Notes</h4>
+        {{#each character.notes}}
+          <p>{{this}}</p>
+        {{/each}}
+      </article>
+    </section>
+  </article>
+</section>

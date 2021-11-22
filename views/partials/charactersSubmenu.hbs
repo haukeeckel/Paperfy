@@ -1,8 +1,13 @@
 <ul class="user-overview-items">
-  <li id="characters-overview" class="user-overview-item">
-    <a href=""><h3>Adventure Details</h3></a>
-  </li>
   <li id="user-overview" class="user-overview-item">
-    <a href=""><h3>Member</h3></a>
+    <a href="/character/{{character._id}}"><h3>Info</h3></a>
   </li>
+  {{#if character.adventureId}}
+    <li id="characters-overview" class="user-overview-item">
+      <a href="/character/{{character._id}}/adventure"><h3>Adventure Details</h3></a>
+    </li>
+    <li id="user-overview" class="user-overview-item">
+      <a href="/character/{{character._id}}/member"><h3>Member</h3></a>
+    </li>
+  {{/if}}
 </ul>
