@@ -325,7 +325,7 @@ main {
 }
 
 .adventureListing {
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
@@ -337,9 +337,11 @@ main {
 }
 
 .adventureListing h3 {
+  display: flex;
+  width: fit-content;
   border: 5px solid var(--blueGray);
-  font-size: 1.5rem;
-  padding: 0.2rem;
+  font-size: 1.3rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   background-color: white;
   border-radius: 5px;
 }
@@ -350,14 +352,18 @@ main {
   padding: 1rem;
   background-color: white;
   border-radius: 5px;
+  max-width: 30vw;
+  height: 9rem;
 }
 
 .filterPicture {
+  display: flex;
+  align-self: center;
   border: 5px solid var(--blueGray);
   padding: 0.7rem;
   background-color: white;
   border-radius: 5px;
-  height: 10rem;
+  max-height: 12rem;
 }
 
 .adventureContentSpan  {
@@ -366,7 +372,12 @@ main {
 }
 
 .playerCount {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  border: 5px solid var(--blueGray);
+  border-radius: 5px;
+  height: fit-content;
 }
 
 #filterPage > h1 {
