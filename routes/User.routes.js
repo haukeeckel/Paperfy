@@ -57,14 +57,45 @@ router.post("/signup", async (req, res, next) => {
   const hash = bcrypt.hashSync(password, salt);
 
   try {
-    await User.create({ username, email, password: hash, avatar });
-    res.render("index");
+    const user = await User.create({ username, email, password: hash, avatar });
+    delete user._doc.email;
+    delete user._doc.password;
+    delete user._doc.createdAt;
+    delete user._doc.updatedAt;
+    delete user._doc.__v;
+
+    req.session.keks = user;
+    res.redirect("signup/info");
   } catch (err) {
     if (err.code == 11000) {
       errors.username = "Username is already taken.";
       res.render("auth/signup", { errors });
       return;
     }
+    next(err);
+  }
+});
+
+/* ------ INFO ------ */
+
+router.get("/signup/info", (req, res) => {
+  const loggedIn = !!req.session.keks;
+
+  res.render("auth/info", { loggedIn });
+});
+
+router.post("/signup/info", async (req, res, next) => {
+  const { _id } = req.session.keks;
+  const { birthDate, location, playerExp, gameMasterExp } = req.body;
+  try {
+    await User.findByIdAndUpdate(_id, {
+      birthDate,
+      location,
+      playerExp,
+      gameMasterExp,
+    });
+    res.redirect("/me");
+  } catch (err) {
     next(err);
   }
 });

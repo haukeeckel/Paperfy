@@ -1,24 +1,26 @@
-<h1>Sign In</h1>
-<form class="flex-clm-center" action="/signin" method="POST">
-  <label for="userInput">Username or Email</label>
-  <input
-    id="userInput"
-    name="userInput"
-    type="text"
-    placeholder="Enter your Username or Email"
-    value=""
-  />
-  <p>{{#if errors}}{{errors.username}}{{/if}}</p>
-  <p>{{#if errors}}{{errors.email}}{{/if}}</p>
-  <label for="password">Password</label>
-  <input
-    id="password"
-    name="password"
-    type="password"
-    placeholder="Enter your Password"
-    value=""
-  />
-  <p>{{#if errors}}{{errors.password}}{{/if}}</p>
+<div id="loginPage">
+  <h1>Login to your profile</h1>
+  <form class="flex-clm-center loginForm" action="/signin" method="POST">
+    <label for="userInput">Enter your Username or Email</label>
+    <input
+      id="userInput"
+      name="userInput"
+      type="text"
+      placeholder="username or email"
+      value=""
+    />
+    <p>{{#if errors}}{{errors.username}}{{/if}}</p>
+    <p>{{#if errors}}{{errors.email}}{{/if}}</p>
+    <label for="password">Type in your password</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="password"
+      value=""
+    />
+    <p>{{#if errors}}{{errors.password}}{{/if}}</p>
 
-  <button>Sign In</button>
-</form>
+    <button class="profileButton startButtonClass">Login</button>
+  </form>
+</div>

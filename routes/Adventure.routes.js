@@ -41,7 +41,8 @@ router.post("/adventure/apply", async (req, res) => {
 /* ------ Browse ------ */
 router.get("/adventure/:id", async (req, res) => {
   const { id } = req.params;
-
+    const loggedIn = !!req.session.keks;
+    
   try {
     const adventure = await Adventure.findById(id);
     if (adventure) {

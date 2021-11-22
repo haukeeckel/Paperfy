@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/stylesheets/sign.css" />
+<div id="loginPage">
+  <h1>You can tell us more about yourself <br />or skip this page</h1>
+  <form class="flex-clm-center loginForm" action="/signup/info" method="POST">
+    <label for="birthDate">How old are you?</label>
+    <input
+      id="birthDate"
+      name="birthDate"
+      type="date"
+      placeholder="Enter your birthday"
+      value=""
+    />
+    <label for="location">Where are you located?</label>
+    <input
+      id="location"
+      name="location"
+      type="text"
+      placeholder="Enter your location"
+      value=""
+    />
+    <label for="playerExp">How much experience do you have as a player?</label>
+    <select name="playerExp">
+      <option value="LOW" style="display:none"></option>
+      <option value="LOW">low</option>
+      <option value="MEDIUM">medium</option>
+      <option value="HIGH">high</option>
+    </select>
+
+    <label for="gameMasterExp">Are you a game master?</label>
+    <input
+      type="checkbox"
+      id="isGameMaster"
+      class="isGameMasterClass"
+      name="isGameMaster"
+    />
+    <label id="gameMasterLabel" for="gameMasterExp" style="display:none;">How
+      much experience as a
+      <br />game master do you have?</label>
+    <select id="gameMasterExp" name="gameMasterExp" style="display:none;">
+      <option value="NONE" style="display:none"></option>
+      <option value="NONE">none</option>
+      <option value="LOW">low</option>
+      <option value="MEDIUM">medium</option>
+      <option value="HIGH">high</option>
+    </select>
+
+    <button class="profileButton startButtonClass">Enter</button>
+  </form>
+</div>
+
+<script src="/js/gamemaster.js"></script>

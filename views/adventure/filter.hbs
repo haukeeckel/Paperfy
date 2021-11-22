@@ -1,11 +1,12 @@
  <div id="filterPage">
+       <h1><u>Find Group</u></h1>
+    <p>Find a group to play your next adventure with.<br>Use the filter options to
+      choose your preferences.</p>
 <form method="POST" action="/filter">
  
-    <h1><u>Find Group</u></h1>
-    <p>Find a group to play your next adventure with. Use the filter options to
-      choose your preferences.</p>
+
   
-  <div>
+  <div class="filterClass">
     <h2>Filter</h2>
     {{! <span><label>Open Seats:</label><input
         type="number"
@@ -19,22 +20,24 @@
         <option value="medieval">Medieval</option>
       </select>
     </span> }}
-    <span><label>Rule set:</label>
+    <span class="filterSpan"><label>Rule set:</label>
       <select name="gameSystem">
+        <option value="How to be a Hero" style="display:none;"></option>
         <option value="How to be a Hero">How to be a Hero</option>
         <option value="other">Other</option>
       </select>
     </span>
     </br>
-    <span>
-      <label>Language</label>
+    <span class="filterSpan">
+      <label>Language:</label>
       <select name="language">
+        <option value="german" style="display:none"></option>
         <option value="german">german</option>
         <option value="english">english</option>
       </select>
     </span>
     </br>
-    <button>Find Group</button>
+    <button id="filterButton">Find Group</button>
   </div>
 </form>
 
