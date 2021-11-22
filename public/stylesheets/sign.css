@@ -1,0 +1,52 @@
+#loginPage,
+#signUpPage {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+  align-self: flex-start;
+}
+
+#loginPage > h1,
+#signUpPage > h1 {
+  margin-block-start: 3rem;
+  text-decoration: underline;
+}
+
+.loginForm {
+  background-color: #fcf8e3;
+  border: 3px solid #374957;
+  border-radius: 5px;
+  margin: 2rem 5rem 2rem 5rem;
+  padding: 1rem 6rem 1rem 6rem;
+  font-size: 1.3rem;
+}
+.loginForm > label {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.loginForm > input {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+}
+.loginForm > p {
+  color: red;
+  font-size: 1rem;
+}
+
+.startButtonClass {
+  margin: 2rem;
+}
+
+#loginPage > form > select {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.isGameMasterClass[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

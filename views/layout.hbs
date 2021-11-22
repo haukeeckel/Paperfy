@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/sign.css" />
   </head>
 
   <body class="flex-clm-center">
@@ -38,21 +39,25 @@
       {{#if loggedIn}}
         <div id="header-user-action" class="flex-row-center">
           <a href="/me"><button
-              class="header-btn"
+              class="header-btn profileButton"
               id="login-header"
             >Profile</button></a>
-          <a href="/logout"><button class="header-btn" id="sign-in-header">Log
-              out</button></a>
+          <a href="/logout"><button
+              class="header-btn logoutButton"
+              id="sign-in-header"
+            >Log out</button></a>
         </div>
       {{/if}}
       {{#unless loggedIn}}
         <div id="header-user-action" class="flex-row-center">
           <a href="/signin"><button
-              class="header-btn"
+              class="header-btn loginButton"
               id="login-header"
             >Login</button></a>
-          <a href="/signup"><button class="header-btn" id="sign-in-header">Sign
-              up</button></a>
+          <a href="/signup"><button
+              class="header-btn signUpButton"
+              id="sign-in-header"
+            >Sign up</button></a>
         </div>
       {{/unless}}
     </header>

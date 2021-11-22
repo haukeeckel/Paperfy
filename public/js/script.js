@@ -1,7 +1,7 @@
 document.addEventListener(
-  'DOMContentLoaded',
+  "DOMContentLoaded",
   () => {
-    console.log('Paperfy JS imported successfully!');
+    console.log("Paperfy JS imported successfully!");
   },
   false
 );
