@@ -1,0 +1,22 @@
+{{> userProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> userSubmenu}}
+  {{> charactersSubmenu}}
+
+  <article class="user-profil-showcase-container flex-row-center">
+    <h3 class="user-profil-showcase-title">
+      Member:
+    </h3>
+    <a href="/user/{{adventure.gameMasterId._id}}"
+        class="user-profil-showcase">
+        {{adventure.gameMasterId.username}}
+    </a>
+    {{#each adventure.participantIds}}
+      <a href="/character/{{this._id}}"
+        class="user-profil-showcase">
+        {{this.characterName}}
+    </a>
+    {{/each}}
+  </article>
+</section>

@@ -1,0 +1,29 @@
+{{> userProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> userSubmenu}}
+  {{> charactersSubmenu}}
+
+  <article class="user-profil-showcase-container flex-row-center">
+  <h3 class="user-profil-showcase-title">Adventure Details:</h3>
+  <article>
+    <p>{{adventure.estimatedTime}} min</p>
+    <h4>Game Master</h4>
+    <h4>{{adventure.gameMasterId.username}}</h4>
+    <h4>Player</h4>
+    <ol>
+      {{#each adventure.userIds}}
+        <li>
+          <a href="/user/{{this._id}}">{{this.username}}</a>
+        </li>
+      {{/each}}
+    </ol>
+    <h4>Game System</h4>
+    <p>{{adventure.gameSystem}}</p>
+    <h4>Language</h4>
+    <p>{{adventure.language}}</p>
+    <h4>Setting description</h4>
+    <p>{{adventure.plot}}</p>
+  </article>
+</article>
+</section>
