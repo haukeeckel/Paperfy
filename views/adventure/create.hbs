@@ -1,0 +1,93 @@
+<section id="user-overview-section" class="sec flex-clm-center">
+
+  <h3>Create a new Adventure</h3>
+  <form action="/me/adventure/create" method="post">
+    <div id="user-data" class="flex-row-center">
+      <div>
+        <ul class="user-data-description">
+          <li class="user-data-item">Adventure Name:</li>
+          <li class="user-data-item">Game System:</li>
+          <li class="user-data-item">Next Date:</li>
+          <li class="user-data-item">Starting Time:</li>
+          <li class="user-data-item">Group Size:</li>
+          <li class="user-data-item">Platform:</li>
+          <li class="user-data-item">Language:</li>
+          <li class="user-data-item">Experience:</li>
+          <li class="user-data-item">Estimated Time (min):</li>
+          <li class="user-data-item">Communication:</li>
+          <li class="user-data-item">Plot:</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="user-data-items">
+          <li class="user-data-item"><input
+              id="adventureName"
+              name="adventureName"
+              type="text"
+            /></li>
+          <li class="user-data-item"><select id="gameSystem" name="gameSystem">
+              <option value="How to be a Hero">How to be a Hero</option>
+              <option value="others">Others</option>
+            </select>
+          </li>
+          <li class="user-data-item"><input
+              id="startDate"
+              name="startDate"
+              type="date"
+            /></li>
+          <li class="user-data-item"><input
+              id="startTime"
+              name="startTime"
+              type="time"
+            /></li>
+          <li class="user-data-item"><input
+              id="groupSize"
+              name="groupSize"
+              type="number"
+              max="8"
+            /></li>
+          <li class="user-data-item"><select id="plattform" name="plattform">
+              <option value="Discord">Discord</option>
+              <option value="Zoom">Zoom</option>
+            </select>
+          </li>
+          <li class="user-data-item"><select id="language" name="language">
+              <option value="german">german</option>
+              <option value="english">english</option>
+            </select>
+          </li>
+          <li class="user-data-item"><select
+              id="expierience"
+              name="expierience"
+            >
+              <option value="low">low</option>
+              <option value="medium">medium</option>
+              <option value="high">high</option>
+            </select>
+          </li>
+          <li class="user-data-item"><input
+              id="estimatedTime"
+              name="estimatedTime"
+              type="number"
+              max="360"
+            /></li>
+          <li class="user-data-item"><select
+              id="communication"
+              name="communication"
+            >
+              <option value="Voice only">Voice only</option>
+              <option value="Voice and Camera">Voice and Camera</option>
+            </select>
+          </li>
+          <li class="user-data-item"><input
+              id="plot"
+              name="plot"
+              type="text"
+              maxlength="280"
+            /></li>
+        </ul>
+      </div>
+    </div>
+    <button style="display: block;">Create</button>
+  </form>
+</section>

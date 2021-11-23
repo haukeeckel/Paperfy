@@ -54,7 +54,7 @@ const AdventureSchema = new Schema(
     },
     expierience: {
       type: String,
-      enum: ["LOW", "MEDIUM", "HIGH"],
+      enum: ["low", "medium", "high"],
       required: true,
     },
     estimatedTime: {
@@ -63,7 +63,7 @@ const AdventureSchema = new Schema(
     },
     communication: {
       type: String,
-      enum: ["VOICE", "CAM AND VOICE"],
+      enum: ["Voice only", "Voice and Camera"],
       required: true,
     },
     minAge: Number,
