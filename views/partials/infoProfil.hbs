@@ -1,0 +1,60 @@
+<label for="birthDate">Whats your birthday?</label>
+<input
+  id="birthDate"
+  name="birthDate"
+  type="date"
+  placeholder="{{#if user.born}}{{user.born}}{{/if}}"
+  value="{{#if user.born}}{{user.born}}{{/if}}"
+/>
+
+<label for="inputLanguages">What languages do you speak?</label>
+<select name="inputLanguages" size="2" multiple="">
+  <option value="{{#if user.languages}}{{user.languages}}{{/if}}" style="display:none"></option>
+  <option value="german">german</option>
+  <option value="english">english</option>
+</select>
+
+
+<label for="location">Where are you located?</label>
+<input
+  id="location"
+  name="location"
+  type="text"
+  placeholder=""
+  value="{{#if user.location}}{{user.location}}{{/if}}"
+/>
+<label for="playerExp">How much experience do you have as a player?</label>
+<select name="playerExp">
+  <option value="{{user.playerExp}}" style="display:none">{{user.playerExp}}</option>
+  
+  <option value="low">low</option>
+  <option value="medium">medium</option>
+  <option value="high">high</option>
+</select>
+
+<label for="gameMasterExp">Are you a game master?</label>
+<input
+  type="checkbox"
+  id="isGameMaster"
+  class="isGameMasterClass"
+  name="isGameMaster"
+  {{#if user.isGameMaster}}checked{{/if}}
+/>
+ 
+<label id="gameMasterLabel" for="gameMasterExp">How much
+  experience as a
+  <br />
+  game master do you have?</label>
+   
+<select id="gameMasterExp" name="gameMasterExp" >
+
+  <option 
+  style="{{#if user.gameMasterExp}}display:none;{{/if}}" 
+  value="{{user.gameMasterExp}}">
+  {{user.gameMasterExp}}
+  </option>
+
+  <option value="low">low</option>
+  <option value="medium">medium</option>
+  <option value="high">high</option>
+</select>

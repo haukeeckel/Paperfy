@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const {
   validateRegisterInput,
   validateLoginInput,
+  validateEditInput,
 } = require("../utilities/validators");
 
 const loggedIn = (req, res, next) => {
@@ -86,12 +87,25 @@ router.get("/signup/info", (req, res) => {
 
 router.post("/signup/info", async (req, res, next) => {
   const { _id } = req.session.keks;
-  let { birthDate, location, playerExp, gameMasterExp, isGameMaster } =
-    req.body;
-
+  let {
+    birthDate,
+    location,
+    playerExp,
+    gameMasterExp,
+    isGameMaster,
+    inputLanguages,
+  } = req.body;
+  let languages = [];
   if (isGameMaster == "on") {
     isGameMaster = true;
   }
+
+  if (typeof inputLanguages == "string") {
+    languages.push(inputLanguages);
+  } else {
+    languages = inputLanguages;
+  }
+
   try {
     await User.findByIdAndUpdate(_id, {
       birthDate,
@@ -99,7 +113,9 @@ router.post("/signup/info", async (req, res, next) => {
       playerExp,
       gameMasterExp,
       isGameMaster,
+      languages,
     });
+
     res.redirect("/me");
   } catch (err) {
     next(err);
@@ -165,6 +181,7 @@ router.get("/me", loggedIn, async (req, res, next) => {
   const { _id } = req.session.keks;
   const loggedIn = !!req.session.keks;
 
+  let atHome = true;
   try {
     const user = await User.findById({ _id }).populate("adventures");
 
@@ -172,7 +189,7 @@ router.get("/me", loggedIn, async (req, res, next) => {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
 
-    res.render("user/profile", { user, loggedIn });
+    res.render("user/profile", { user, loggedIn, atHome });
   } catch (err) {
     next(err);
   }
@@ -245,9 +262,11 @@ router.get("/me/edit", async (req, res, next) => {
   const loggedIn = true;
 
   try {
-    const user = await User.findById({ _id });
-
-    res.render("user/editProfile", { user, loggedIn });
+    let user = await User.findById({ _id });
+    if (user.birthDate) {
+      user.born = user.birthDate.toISOString().slice(0, 10);
+    }
+    res.render("user/edit", { user, loggedIn });
   } catch (err) {
     next(err);
   }
@@ -255,7 +274,8 @@ router.get("/me/edit", async (req, res, next) => {
 
 router.post("/me/edit", async (req, res, next) => {
   const { _id } = req.session.keks;
-  const {
+  const loggedIn = true;
+  let {
     username,
     email,
     firstName,
@@ -263,32 +283,82 @@ router.post("/me/edit", async (req, res, next) => {
     isPlayer,
     isGameMaster,
     status,
+    birthDate,
     avatar,
     playerExp,
     gameMasterExp,
     location,
-    lanugages,
+    inputLanguages,
+    password,
+    newPassword,
+    confirmNewPassword,
   } = req.body;
 
   try {
-    const user = await User.findByIdAndUpdate(
+    let user = await User.findById({ _id });
+
+    const { notValid, errors } = validateEditInput(
+      email,
+      newPassword,
+      confirmNewPassword
+    );
+    if (notValid) {
+      res.render("user/edit", { user, errors, loggedIn });
+      return;
+    }
+    let hash;
+    if (newPassword != "") {
+      const salt = bcrypt.genSaltSync(12);
+      hash = bcrypt.hashSync(newPassword, salt);
+    }
+
+    let languages = [];
+    if (isGameMaster == "on") {
+      isGameMaster = true;
+    } else {
+      isGameMaster = false;
+    }
+
+    if (typeof inputLanguages == "string") {
+      languages.push(inputLanguages);
+    } else {
+      languages = inputLanguages;
+    }
+    const checkPW = bcrypt.compareSync(password, user.password);
+
+    if (!checkPW) {
+      res.render("user/edit", {
+        user,
+        loggedIn,
+        errors: "Please make sure to enter your current password!",
+      });
+      return;
+    }
+
+    if (!hash) {
+      hash = user.password;
+    }
+
+    await User.findByIdAndUpdate(
       { _id },
       {
         username,
+        password: hash,
         email,
         firstName,
         lastName,
         isPlayer,
         isGameMaster,
+        birthDate,
         status,
         avatar,
         playerExp,
         gameMasterExp,
         location,
-        lanugages,
+        languages,
       }
     );
-    res.status(200).json(user);
+    res.redirect("/me");
   } catch (err) {
     next(err);
   }
