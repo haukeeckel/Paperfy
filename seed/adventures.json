@@ -4,7 +4,9 @@
   },
   "adventureName": "testGame",
   "gameSystem": "How to be a Hero",
-  "startDate": "2021-11-18T21:49:25.915Z",
+  "startDate": {
+    "$date": "2021-11-18T07:49:25.915Z"
+  },
   "groupSize": 5,
   "plattform": "Zoom",
   "language": "german",
@@ -38,14 +40,19 @@
     }
   ],
   "isActive": true,
-  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg"
+  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg",
+  "createdAt": {
+    "$date": "2021-11-01T16:26:02.566Z"
+  }
 },{
   "_id": {
     "$oid": "619959e1b728ddbd7f986d5c"
   },
   "adventureName": "closedGame",
   "gameSystem": "How to be a Hero",
-  "startDate": "2021-11-18T21:49:25.915Z",
+  "startDate": {
+    "$date": "2021-11-18T21:49:25.915Z"
+  },
   "groupSize": 5,
   "plattform": "Zoom",
   "language": "german",
@@ -80,5 +87,8 @@
     }
   ],
   "isActive": false,
-  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg"
+  "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg",
+  "createdAt": {
+    "$date": "2021-11-01T16:26:02.566Z"
+  }
 }]

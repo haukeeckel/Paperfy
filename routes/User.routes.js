@@ -468,46 +468,50 @@ router.post("/me/character/create", loggedIn, async (req, res, next) => {
 // ----------------------------------------
 // to sort:
 
-router.get("/me/adventure/create", isGameMaster, (_, res) => {
-  res.render("adventure/create");
+router.get("/me/adventure/create", isGameMaster, (req, res) => {
+  const loggedIn = !!req.session.keks;
+  res.render("adventure/create", { loggedIn });
 });
 
 router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
+  const { _id: gameMasterId } = req.session.keks;
+
+  const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
+  const startDate = new Date(startDateInput);
+
   const {
     adventureName,
     gameSystem,
-    startDate,
     groupSize,
     plattform,
     language,
     expierience,
     estimatedTime,
     communication,
-    minAge,
     plot,
   } = req.body;
 
-  const { _id } = req.session.keks;
+  const portrait = `https://avatars.dicebear.com/api/identicon/${adventureName}.svg`;
 
   try {
     const adventure = await Adventure.create({
-      gameMasterId: _id,
+      gameMasterId,
       adventureName,
       gameSystem,
-      startDate,
       groupSize,
       plattform,
       language,
       expierience,
       estimatedTime,
       communication,
-      minAge,
       plot,
+      startDate,
+      portrait,
     });
-
-    await User.findOneAndUpdate({ _id }, { $push: { adventures: adventure } });
-    req.session.keks.adventures.push(adventure._id);
-    res.status(200).json(adventure);
+    await User.findByIdAndUpdate(gameMasterId, {
+      $push: { adventures: adventure._id },
+    });
+    res.redirect("/me");
   } catch (err) {
     next(err);
   }
