@@ -155,7 +155,7 @@ router.get("/logout", (req, res) => {
 });
 
 /* ------ my Profile✅ ------ */
-router.get("/me", async (req, res, next) => {
+router.get("/me", loggedIn, async (req, res, next) => {
   const { _id } = req.session.keks;
   const loggedIn = !!req.session.keks;
 
@@ -317,69 +317,80 @@ router.post("/me/delete", async (req, res, next) => {
   }
 });
 
-// ----------------------------------------
-// to sort:
-router.get("/me/character/create", loggedIn, (_, res) => {
-  res.render("character/create.hbs");
-});
-
-router.post("/me/character/create", async (req, res, next) => {
-  // const { _id: userId } = req.session.keks;
-  let {
-    userId,
-    characterName,
-    portrait,
-    gender,
-    age,
-    healthPoints,
-    figure,
-    religion,
-    profession,
-    maritalStatus,
-    physical,
-    knowledge,
-    social,
-    inventory,
-    notes,
-  } = req.body;
-
-  if (!portrait) {
-    portrait = `https://avatars.dicebear.com/api/croodles-neutral/${characterName
-      .split(" ")
-      .join("")}.svg`;
-  }
+router.get("/me/character/create", loggedIn, async (req, res, next) => {
+  const { _id } = req.session.keks;
+  const loggedIn = !!req.session.keks;
 
   try {
-    const character = await Character.create({
-      userId,
-      characterName,
-      portrait,
-      gender,
-      age,
-      healthPoints,
-      figure,
-      religion,
-      profession,
-      maritalStatus,
-      physical,
-      knowledge,
-      social,
-      inventory,
-      notes,
-      state: "saved",
-    });
-
-    await User.findOneAndUpdate(
-      { userId },
-      { $push: { characters: character } }
-    );
-    req.session.keks.characters.push(character._id);
-
-    res.status(200).json(character);
+    const user = await User.findById(_id);
+    res.render("character/create.hbs", { loggedIn, user });
   } catch (err) {
     next(err);
   }
 });
+
+router.post("/me/character/create", loggedIn, async (req, res, next) => {
+  const { _id: userId } = req.session.keks;
+  const {
+    characterName,
+    gender,
+    figure,
+    profession,
+    age,
+    healthPoints,
+    religion,
+    maritalStatus,
+    ...rest
+  } = req.body;
+
+  const portrait = `https://avatars.dicebear.com/api/croodles-neutral/${characterName}.svg`;
+  const physical = {};
+  const knowledge = {};
+  const social = {};
+
+  const skills = Object.values(rest);
+
+  for (let i = 0; i <= skills.length; i = i + 2) {
+    if (skills[i] != "") {
+      if (i <= 10) {
+        physical[skills[i]] = skills[i + 1];
+      } else if (i <= 20) {
+        knowledge[skills[i]] = skills[i + 1];
+      } else {
+        social[skills[i]] = skills[i + 1];
+      }
+    }
+  }
+
+  try {
+    const character = await Character.create({
+      characterName,
+      gender,
+      figure,
+      profession,
+      age,
+      healthPoints,
+      religion,
+      maritalStatus,
+      physical,
+      knowledge,
+      social,
+      portrait,
+      state: "saved",
+      userId,
+    });
+    const user = await User.findById(userId);
+    user.characters.push(character._id);
+    await user.save();
+
+    res.redirect("/me");
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ----------------------------------------
+// to sort:
 
 router.get("/me/adventure/create", isGameMaster, (_, res) => {
   res.render("adventure/create");

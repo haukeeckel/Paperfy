@@ -49,6 +49,9 @@
   "__v": 0,
   "userId": {
     "$oid": "6199219a05ab4dbecabd1171"
+  },
+  "adventureId": {
+    "$oid": "619959e1b728ddbd7f986d5c"
   }
 },{
   "_id": {
@@ -101,6 +104,9 @@
   "__v": 0,
   "userId": {
     "$oid": "6199219a05ab4dbecabd1171"
+  },
+  "adventureId": {
+    "$oid": "619959e1b728ddbd7f986d5c"
   }
 },{
   "_id": {
@@ -153,6 +159,9 @@
   "__v": 0,
   "userId": {
     "$oid": "61992223dfb7a0cd3495e14c"
+  },
+  "adventureId": {
+    "$oid": "619959e1b728ddbd7f986d5c"
   }
 },{
   "_id": {
@@ -205,6 +214,9 @@
   "__v": 0,
   "userId": {
     "$oid": "61992223dfb7a0cd3495e14c"
+  },
+  "adventureId": {
+    "$oid": "61995226b728ddbd7f986d4a"
   }
 },{
   "_id": {
@@ -257,6 +269,9 @@
   "__v": 0,
   "userId": {
     "$oid": "619922b8b972d209af0e19db"
+  },
+  "adventureId": {
+    "$oid": "619959e1b728ddbd7f986d5c"
   }
 },{
   "_id": {
