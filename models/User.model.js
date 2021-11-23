@@ -44,13 +44,13 @@ const userSchema = new Schema(
     },
     playerExp: {
       type: String,
-      enum: ["NONE", "LOW", "MEDIUM", "HIGH"],
-      default: "LOW",
+      enum: ["low", "medium", "high"],
+      default: "low",
     },
     gameMasterExp: {
       type: String,
-      enum: ["NONE", "LOW", "MEDIUM", "HIGH"],
-      default: "NONE",
+      enum: ["none", "low", "medium", "high"],
+      default: "none",
     },
     characters: {
       type: [Schema.Types.ObjectId],

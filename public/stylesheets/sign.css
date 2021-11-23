@@ -62,3 +62,29 @@
   cursor: pointer;
   margin: 2rem;
 }
+
+.deleteButton {
+  background-color: #ff6933;
+}
+
+.deleteButton:hover {
+  background-color: #374957;
+  color: #f0f0f0;
+}
+
+.deleteButton:active {
+  color: #ff6933;
+}
+
+.editButton {
+  background-color: #2cc5fa;
+}
+
+.editButton:hover {
+  background-color: #f0f0f0;
+  color: #374957;
+}
+
+.editButton:active {
+  color: #2cc5fa;
+}

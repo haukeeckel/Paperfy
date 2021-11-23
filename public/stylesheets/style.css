@@ -431,7 +431,7 @@ main {
   width: 15rem;
 }
 
-#filterButton {
+.filterButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -442,10 +442,10 @@ main {
   background-color: var(--accOrange);
 }
 
-#filterButton:hover {
+.filterButton:hover {
   background-color: var(--lighterGrey);
 }
 
-#filterButton:active {
+.filterButton:active {
   color: var(--accOrange);
 }
