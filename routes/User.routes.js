@@ -86,13 +86,19 @@ router.get("/signup/info", (req, res) => {
 
 router.post("/signup/info", async (req, res, next) => {
   const { _id } = req.session.keks;
-  const { birthDate, location, playerExp, gameMasterExp } = req.body;
+  let { birthDate, location, playerExp, gameMasterExp, isGameMaster } =
+    req.body;
+
+  if (isGameMaster == "on") {
+    isGameMaster = true;
+  }
   try {
     await User.findByIdAndUpdate(_id, {
       birthDate,
       location,
       playerExp,
       gameMasterExp,
+      isGameMaster,
     });
     res.redirect("/me");
   } catch (err) {

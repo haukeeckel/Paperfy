@@ -59,7 +59,7 @@ router.get("/character/:characterId/member", async (req, res, next) => {
     })
       .populate("participantIds")
       .populate("gameMasterId");
-    console.log(adventure);
+
     res.render("character/profileMember", {
       character,
       adventure,

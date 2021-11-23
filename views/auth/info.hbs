@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/sign.css" />
 <div id="loginPage">
-  <h1>You can tell us more about yourself <br />or skip this page</h1>
+  <h1>Tell us more about yourself</h1>
   <form class="flex-clm-center loginForm" action="/signup/info" method="POST">
     <label for="birthDate">How old are you?</label>
     <input
@@ -38,13 +38,14 @@
       <br />game master do you have?</label>
     <select id="gameMasterExp" name="gameMasterExp" style="display:none;">
       <option value="NONE" style="display:none"></option>
-      <option value="NONE">none</option>
       <option value="LOW">low</option>
       <option value="MEDIUM">medium</option>
       <option value="HIGH">high</option>
     </select>
-
-    <button class="profileButton startButtonClass">Enter</button>
+    <div class="flex-row-center">
+      <button class="profileButton startButtonClass">Enter</button>
+      <a href="/me" class="logoutButton skipLink">Skip </a>
+    </div>
   </form>
 </div>
 

@@ -7,7 +7,7 @@
 
   
   <div class="filterClass">
-    <h2>Filter</h2>
+    
     {{! <span><label>Open Seats:</label><input
         type="number"
         name="openSeats"
@@ -20,7 +20,8 @@
         <option value="medieval">Medieval</option>
       </select>
     </span> }}
-    <span class="filterSpan"><label>Rule set:</label>
+    <span class="filterSpan">
+      <label>Rule set:</label>
       <select name="gameSystem">
         <option value="How to be a Hero" style="display:none;"></option>
         <option value="How to be a Hero">How to be a Hero</option>
@@ -45,13 +46,14 @@
   {{#each filterResults}}
   <a href="/adventure/{{this._id}}" class="adventureListing">
     <img class="filterPicture" src="{{this.portrait}}" />
-    <span class="adventureContentSpan">
-    <h3>{{this.adventureName}}</h3>
-    <p>{{this.plot}}</p>
-    </span>
-    <span class = "playerCount">
-      {{this.playerCount}} open
-    </span>
+    <div class="adventureListingHead">
+        <h3>{{this.adventureName}}</h3>
+        <span class = "playerCount">
+          {{this.playerCount}} open
+        </span>
+  
+         <p>{{this.plot}}</p>
+         </div>
   </a>
   {{/each}}
 </div>
