@@ -21,7 +21,14 @@
       "$oid": "61992537b728ddbd7f986d10"
     }
   ],
-  "adventures": [],
+  "adventures": [
+    {
+      "$oid": "619959e1b728ddbd7f986d5c"
+    },
+    {
+      "$oid": "61995226b728ddbd7f986d4a"
+    }
+  ],
   "location": "Unknown",
   "languages": [
     "Unknown"
@@ -56,7 +63,14 @@
       "$oid": "61992571b728ddbd7f986d12"
     }
   ],
-  "adventures": [],
+  "adventures": [
+    {
+      "$oid": "619959e1b728ddbd7f986d5c"
+    },
+    {
+      "$oid": "61995226b728ddbd7f986d4a"
+    }
+  ],
   "location": "Unknown",
   "languages": [
     "Unknown"
@@ -84,7 +98,14 @@
   "playerExp": "HIGH",
   "gameMasterExp": "HIGH",
   "characters": [],
-  "adventures": [],
+  "adventures": [
+    {
+      "$oid": "61995226b728ddbd7f986d4a"
+    },
+    {
+      "$oid": "619959e1b728ddbd7f986d5c"
+    }
+  ],
   "location": "Unknown",
   "languages": [
     "Unknown"
@@ -122,7 +143,11 @@
       "$oid": "6199507fb728ddbd7f986d3f"
     }
   ],
-  "adventures": [],
+  "adventures": [
+    {
+      "$oid": "619959e1b728ddbd7f986d5c"
+    }
+  ],
   "location": "Unknown",
   "languages": [
     "Unknown"
@@ -134,4 +159,35 @@
     "$date": "2021-11-20T16:30:48.214Z"
   },
   "__v": 0
+},{
+  "_id": {
+    "$oid": "619b93cc888a771e118c972f"
+  },
+  "username": "Hans",
+  "email": "hans@test.com",
+  "password": "$2a$12$QqgpmUwjJDgfzReEBYxvp.XHjjrWG4tVZsq4pBgzaHQpYexnnroDO",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": false,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Hans.svg",
+  "playerExp": "MEDIUM",
+  "gameMasterExp": "HIGH",
+  "characters": [],
+  "adventures": [],
+  "location": "Germany",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-22T12:57:48.070Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-22T12:58:25.749Z"
+  },
+  "__v": 0,
+  "birthDate": {
+    "$date": "2000-06-07T00:00:00Z"
+  }
 }]
