@@ -325,48 +325,68 @@ main {
 }
 
 .adventureListing {
-  width: 70%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
+  max-width: 55rem;
   margin: 3rem auto;
-  padding: 2rem;
-  border: 5px solid var(--blueGray);
+  padding: 2rem 3rem 2rem 3rem;
+  border: 4px solid var(--blueGray);
   border-radius: 5px;
   background-color: var(--accOrange);
 }
 
-.adventureListing h3 {
-  border: 5px solid var(--blueGray);
-  font-size: 1.5rem;
-  padding: 0.2rem;
-  background-color: white;
-  border-radius: 5px;
-}
-
 .adventureListing p {
-  border: 5px solid var(--blueGray);
+  border: 4px solid var(--blueGray);
   font-size: 1rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   background-color: white;
   border-radius: 5px;
+  height: 9rem;
 }
 
 .filterPicture {
-  border: 5px solid var(--blueGray);
+  display: flex;
+  align-self: center;
+  border: 4px solid var(--blueGray);
   padding: 0.7rem;
   background-color: white;
   border-radius: 5px;
-  height: 10rem;
+  max-height: 12.5rem;
 }
 
-.adventureContentSpan  {
-  flex-direction: column;
-  padding: 0 0 0 1rem;
+.adventureListingHead {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 70%;
+  justify-content: space-between;
+}
+
+.adventureListingHead h3 {
+  min-width: fit-content;
+  height: fit-content;
+  font-size: 1.3rem;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border: 4px solid var(--blueGray);
+  background-color: white;
+  border-radius: 5px;
+}
+.adventureListingHead span {
+  width: 20%;
+  height: fit-content;
 }
 
 .playerCount {
-  font-size: 1.5rem;
+  background-color: white;
+  border: 4px solid var(--blueGray);
+  border-radius: 5px;
+}
+
+.adventureListingHead p {
+  min-width: 100%;
+  text-align: start;
 }
 
 #filterPage > h1 {
@@ -385,33 +405,28 @@ main {
 
 .filterClass {
   background-color: #fcf8e3;
-  border: 3px solid var(--blueGray);
+  border: 4px solid var(--blueGray);
   border-radius: 5px;
-  margin: 2rem 10rem 2rem 10rem;
-  padding: 2rem 0rem 2rem 0rem;
-  font-size: 1.5rem;
-}
-
-.filterClass > h2 {
-  text-align: center;
-  font-size: 2.3rem;
-  padding-bottom: 1rem;
+  margin: 3rem auto;
+  padding: 3rem 0rem 2rem 0rem;
+  font-size: 1.7rem;
+  max-width: 40rem;
 }
 
 .filterSpan {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .filterClass > span > label {
   margin: 0rem 0rem 0rem 4rem;
 }
 .filterClass > span > select {
-  text-align: start;
+  text-align: center;
   color: var(--blueGray);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin: 0rem 4rem 0rem 0rem;
   width: 15rem;
 }
@@ -420,7 +435,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 2rem auto;
   font-size: 1.5rem;
   height: auto;
   width: 10rem;

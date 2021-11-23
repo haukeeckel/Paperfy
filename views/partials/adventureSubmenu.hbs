@@ -1,0 +1,20 @@
+<ul class="user-overview-items">
+  <li id="user-overview" class="user-overview-item">
+    <a href="/adventure/{{adventure._id}}">
+      <h2>Details</h2>
+    </a>
+  </li>
+
+  <li id="characters-overview" class="user-overview-item">
+    <a href="/adventure/{{adventure._id}}/characters">
+      <h2>Characters</h2>
+    </a>
+  </li>
+  {{#unless isApplied}}
+    <li id="mastery-overview" class="user-overview-item">
+      <a href="/adventure/{{adventure._id}}/apply">
+        <h2>Apply</h2>
+      </a>
+    </li>
+  {{/unless}}
+</ul>

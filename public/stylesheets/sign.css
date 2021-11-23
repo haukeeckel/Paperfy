@@ -50,3 +50,15 @@
   height: 25px;
   cursor: pointer;
 }
+
+.skipLink {
+  color: #374957;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 2.7rem;
+  padding: 0.2rem 0.8rem 0.2rem 0.8rem;
+  border: 3px solid #374957;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem;
+}

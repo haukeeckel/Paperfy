@@ -1,0 +1,32 @@
+{{> adventureProfile}}
+
+<section id="user-overview-section" class="sec flex-clm-center">
+  {{> adventureSubmenu}}
+
+  
+<h3>{{adventure.adventureName}}</h3>
+<div id="user-data" class="flex-row-center">
+  
+  <ul class= "user-data-description">
+    <li class="user-data-item">Game System:</li>
+    <li class="user-data-item">Next Date:</li>
+    <li class="user-data-item">Starting Time:</li>
+    <li class="user-data-item">Characters:</li>
+    <li class="user-data-item">Platform:</li>
+    <li class="user-data-item">Language:</li>
+    <li class="user-data-item">Experience:</li>
+ </ul>
+ <ul class="user-data-items">
+    <li class="user-data-item">{{adventure.gameSystem}}</li>
+    <li class="user-data-item">{{adventure.start}}</li>
+    <li class="user-data-item">{{adventure.time}}</li>
+    <li class="user-data-item">{{adventure.userIds.length}} / {{adventure.groupSize}}</li>
+    <li class="user-data-item">{{adventure.plattform}}</li>
+    <li class="user-data-item">{{adventure.language}}</li>
+    <li class="user-data-item">{{adventure.expierience}}</li>
+   
+
+
+ </ul>
+ </div>
+</section>
