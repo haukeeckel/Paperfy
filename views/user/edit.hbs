@@ -1,0 +1,50 @@
+
+<div id="loginPage">
+    <h1>Change your profile</h1>
+ <form class="flex-clm-center loginForm" action="/me/edit" method="POST">
+    <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          value="{{user.email}}"
+      />
+  <p>{{#if errors}}{{errors.email}}{{/if}}</p>
+      <label for="newPassword">New Password</label>
+        <input
+          id="newPassword"
+          name="newPassword"
+          type="password"
+          placeholder="Enter new Password"
+          value=""
+      />
+  <p>{{#if errors}}{{errors.password}}{{/if}}</p>
+      <label for="confirmNewPassword">Confirm new Password</label>
+        <input
+          id="confirmNewPassword"
+          name="confirmNewPassword"
+          type="password"
+          placeholder="Confirm new Password"
+          value=""
+        />
+
+      {{> infoProfil}}
+
+    <label for="password">Type in your password</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="password"
+      value=""
+    />
+    <p>{{#if errors}}{{errors}}{{/if}}</p>
+    <div class="flex-row-center">
+      <button class="profileButton startButtonClass">Enter</button>
+      <a href="/me" class="logoutButton skipLink deleteButton">Delete </a>
+    </div>
+  </form>
+</div>
+
+<script src="/js/gamemaster.js"></script>

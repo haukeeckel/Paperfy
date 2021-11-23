@@ -45,7 +45,7 @@ const userSchema = new Schema(
     playerExp: {
       type: String,
       enum: ["low", "medium", "high"],
-      default: "LOW",
+      default: "low",
     },
     gameMasterExp: {
       type: String,

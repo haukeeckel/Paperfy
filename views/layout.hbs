@@ -38,10 +38,21 @@
       </form>
       {{#if loggedIn}}
         <div id="header-user-action" class="flex-row-center">
-          <a href="/me"><button
-              class="header-btn profileButton"
-              id="login-header"
-            >Profile</button></a>
+          {{#unless atHome}}
+            <a href="/me"><button
+                class="header-btn profileButton"
+                id="login-header"
+              >Profile</button></a>
+          {{/unless}}
+
+          {{#if atHome}}
+            <a href="/me/edit"><button
+                class="header-btn editButton"
+                id="login-header"
+              >Edit Profile</button>
+            </a>
+          {{/if}}
+
           <a href="/logout"><button
               class="header-btn logoutButton"
               id="sign-in-header"

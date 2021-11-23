@@ -55,3 +55,29 @@ module.exports.validateLoginInput = (userInput, password) => {
     notValid: Object.keys(errors).length >= 1,
   };
 };
+
+module.exports.validateEditInput = (email, password, confirmPassword) => {
+  const errors = {};
+
+  if (email.trim() === "") {
+    errors.email = "Email must not be empty";
+  } else {
+    if (!email.match(mailRegEx)) {
+      errors.email = "Email must be in a regular format";
+    }
+  }
+
+  if (password !== confirmPassword) {
+    errors.password = "Password must match";
+  } else if (!password.match(passRegEx)) {
+    if (password != "") {
+      errors.password =
+        "Password must match min. 8 character, with at least a symbol, upper and lower case letters and a number";
+    }
+  }
+
+  return {
+    errors,
+    notValid: Object.keys(errors).length >= 1,
+  };
+};
