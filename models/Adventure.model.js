@@ -70,6 +70,7 @@ const AdventureSchema = new Schema(
     plot: {
       type: String,
       required: true,
+      maxLength: 280,
     },
   },
   {
