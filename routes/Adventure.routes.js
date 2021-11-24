@@ -79,7 +79,6 @@ router.get("/adventure/:id/applicants", async (req, res) => {
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
     adventure.time = adventure.startDate.toISOString().slice(11, 16);
-
     res.render("adventure/applicants", {
       adventure,
       loggedIn,
@@ -89,6 +88,42 @@ router.get("/adventure/:id/applicants", async (req, res) => {
     // res.render("adventure/applicants", { adventure });
   } catch (err) {
     res.sendStatus(400);
+  }
+});
+
+router.post("/adventure/:id/applicants/accept", async (req, res, next) => {
+  const { id } = req.params;
+  const { applicantsId } = req.body;
+
+  try {
+    const adventure = await Adventure.findById(id);
+    let applicant = adventure.applicants.filter((applicant) => {
+      return applicant._id == applicantsId;
+    });
+
+    adventure.participantIds.push(applicant[0].characterId);
+    adventure.userIds.push(applicant[0].userId);
+
+    await adventure.applicants.pull({ _id: applicantsId });
+    await adventure.save();
+
+    res.redirect(`/adventure/${id}/applicants`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/adventure/:id/applicants/reject", async (req, res, next) => {
+  const { id } = req.params;
+  const { applicantsId } = req.body;
+
+  try {
+    const adventure = await Adventure.findById(id);
+    await adventure.applicants.pull({ _id: applicantsId });
+    await adventure.save();
+    res.redirect(`/adventure/${id}/applicants`);
+  } catch (err) {
+    next(err);
   }
 });
 

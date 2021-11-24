@@ -16,10 +16,16 @@
       <h3>{{this.userId.username}}      
         
     {{#if this.characterId.characterName}}
-     <span> with "{{this.characterId.characterName}}"</span>
-     {{/if}}</h3>     
-     <form action="" method="post"><button>Accept</button></form>
-     <form action=""method="post"><button>Reject</button></form>
+      <span> with "{{this.characterId.characterName}}"</span>
+    {{/if}}</h3>     
+    <form action="/adventure/{{../adventure._id}}/applicants/accept" method="post">
+      <input type="text" name="applicantsId" value="{{this._id}}" style="display:none;"/>
+      <button>Accept</button>
+    </form>
+    <form action="/adventure/{{../adventure._id}}/applicants/reject" method="post">
+      <input type="text" name="applicantsId" value="{{this._id}}" style="display:none;"/>
+      <button>Reject</button>
+    </form>
 
      <p class="applicantsP">{{this.message}}</p>
     </div>

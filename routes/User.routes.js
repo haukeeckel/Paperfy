@@ -182,7 +182,7 @@ router.get("/logout", (req, res) => {
 });
 
 /* ------ my Profile✅ ------ */
-router.get("/me", loggedIn, async (req, res, next) => {
+router.get("/me", async (req, res, next) => {
   const { _id } = req.session.keks;
   const loggedIn = !!req.session.keks;
 
@@ -223,7 +223,11 @@ router.get("/user/:_id", async (req, res, next) => {
 router.get("/user/:_id/character", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  const isMe = isItMe(_id, req.session.keks._id);
+  let isMe = false;
+
+  if (req.session.keks) {
+    isMe = isItMe(_id, req.session.keks._id);
+  }
 
   try {
     const user = await User.findById(_id, {
@@ -240,7 +244,11 @@ router.get("/user/:_id/character", async (req, res) => {
 router.get("/user/:_id/adventure", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  const isMe = isItMe(_id, req.session.keks._id);
+  let isMe = false;
+
+  if (req.session.keks) {
+    isMe = isItMe(_id, req.session.keks._id);
+  }
 
   try {
     const user = await User.findById(_id, {
@@ -347,7 +355,7 @@ router.post("/me/edit", async (req, res, next) => {
       hash = user.password;
     }
 
-    await User.findByIdAndUpdate(
+    user = await User.findByIdAndUpdate(
       { _id },
       {
         username,
@@ -366,6 +374,7 @@ router.post("/me/edit", async (req, res, next) => {
         languages,
       }
     );
+
     res.redirect("/me");
   } catch (err) {
     next(err);
@@ -374,11 +383,11 @@ router.post("/me/edit", async (req, res, next) => {
 
 /* ------ Delete⚠️ ------ */
 // TODO Delete all Characters and set Adventure-Links to ['DELETED]'
-router.get("/me/delete", (req, res) => {
+router.get("/me/delete", loggedIn, (req, res) => {
   res.render("user/profile");
 });
 
-router.post("/me/delete", async (req, res, next) => {
+router.post("/me/delete", loggedIn, async (req, res, next) => {
   const { password } = req.body;
   const { _id } = req.session.keks;
 
