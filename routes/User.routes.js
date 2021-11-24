@@ -204,7 +204,7 @@ router.get("/me", async (req, res, next) => {
 router.get("/user/:_id", async (req, res, next) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  const isMe = isItMe(_id, req.session.keks);
+  const atHome = isItMe(_id, req.session.keks._id);
 
   try {
     const user = await User.findById({ _id }).populate("adventures");
@@ -213,7 +213,7 @@ router.get("/user/:_id", async (req, res, next) => {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
 
-    res.render("user/profile", { user, loggedIn, isMe });
+    res.render("user/profile", { user, loggedIn, atHome });
   } catch (err) {
     next(err);
   }
@@ -223,10 +223,10 @@ router.get("/user/:_id", async (req, res, next) => {
 router.get("/user/:_id/character", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  let isMe = false;
+  let atHome = false;
 
   if (req.session.keks) {
-    isMe = isItMe(_id, req.session.keks._id);
+    atHome = isItMe(_id, req.session.keks._id);
   }
 
   try {
@@ -234,7 +234,7 @@ router.get("/user/:_id/character", async (req, res) => {
       characters: { $slice: 5 },
     }).populate("characters");
 
-    res.render("user/profileCharacters", { user, loggedIn, isMe });
+    res.render("user/profileCharacters", { user, loggedIn, atHome });
   } catch (err) {
     res.sendStatus(400);
   }
@@ -244,10 +244,10 @@ router.get("/user/:_id/character", async (req, res) => {
 router.get("/user/:_id/adventure", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  let isMe = false;
+  let atHome = false;
 
   if (req.session.keks) {
-    isMe = isItMe(_id, req.session.keks._id);
+    atHome = isItMe(_id, req.session.keks._id);
   }
 
   try {
@@ -263,7 +263,7 @@ router.get("/user/:_id/adventure", async (req, res) => {
 
     await user.populate("adventures");
 
-    res.render("user/profileAdventures", { user, loggedIn, isMe });
+    res.render("user/profileAdventures", { user, loggedIn, atHome });
   } catch (err) {
     res.sendStatus(400);
   }
@@ -422,7 +422,7 @@ router.get("/me/character/create", loggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/me/character/create", loggedIn, async (req, res, next) => {
+router.post("/me/character/create", loggedIn, async (req, res) => {
   const { _id: userId } = req.session.keks;
   const {
     characterName,
@@ -478,7 +478,20 @@ router.post("/me/character/create", loggedIn, async (req, res, next) => {
 
     res.redirect("/me");
   } catch (err) {
-    next(err);
+    const user = await User.findById(userId);
+
+    res.render("character/create", {
+      user,
+      characterName,
+      gender,
+      figure,
+      profession,
+      age,
+      healthPoints,
+      religion,
+      maritalStatus,
+      loggedIn: true,
+    });
   }
 });
 
@@ -487,7 +500,7 @@ router.get("/me/adventure/create", isGameMaster, (req, res) => {
   res.render("adventure/create", { loggedIn });
 });
 
-router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
+router.post("/me/adventure/create", isGameMaster, async (req, res) => {
   const { _id: gameMasterId } = req.session.keks;
 
   const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
@@ -503,6 +516,8 @@ router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
     estimatedTime,
     communication,
     plot,
+    startTime,
+    startDate: prevInputDate,
   } = req.body;
 
   const portrait = `https://avatars.dicebear.com/api/identicon/${adventureName}.svg`;
@@ -527,7 +542,23 @@ router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
     });
     res.redirect("/me");
   } catch (err) {
-    next(err);
+    const user = await User.findById(gameMasterId);
+
+    res.render("character/create", {
+      user,
+      adventureName,
+      gameSystem,
+      groupSize,
+      plattform,
+      language,
+      expierience,
+      estimatedTime,
+      communication,
+      plot,
+      prevInputDate,
+      loggedIn: true,
+      startTime,
+    });
   }
 });
 

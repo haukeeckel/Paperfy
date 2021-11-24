@@ -5,7 +5,7 @@
 
   <article class="user-profil-showcase-container flex-row-center">
   <h3 class="user-profil-showcase-title">Characters:</h3>
-  {{#if isMe}}
+  {{#if atHome}}
     <a href="/me/character/create" class="user-profil-showcase-create">Create a new Characters</a>
   {{/if}}
   {{#each user.characters}}
