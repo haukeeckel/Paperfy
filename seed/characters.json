@@ -377,4 +377,262 @@
   "userId": {
     "$oid": "619922b8b972d209af0e19db"
   }
+},{
+  "_id": {
+    "$oid": "619cf3ae1147abb17831e8c4"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "120"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "da": "120",
+      "test3": "120"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-23T13:59:10.576Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-23T13:59:10.576Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619cf3b11147abb17831e8c7"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "120"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "da": "120",
+      "test3": "120"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-23T13:59:13.513Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-23T13:59:13.513Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619cf3ba649963d5947c6b92"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "120"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "da": "120",
+      "test3": "120"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-23T13:59:22.579Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-23T13:59:22.579Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619cf436649963d5947c6b95"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "120"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "da": "120",
+      "test3": "120"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-23T14:01:26.517Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-23T14:01:26.517Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619d21c32beb0ca0c94547ac"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "61992253dfb7a0cd3495e14e"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "100"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "da": "100",
+      "dasd": "100"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-23T17:15:47.561Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-23T17:15:47.561Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619d8c75ee615b337bc00d0d"
+  },
+  "characterName": "test",
+  "portrait": "https://avatars.dicebear.com/api/croodles-neutral/test.svg",
+  "userId": {
+    "$oid": "619cd03a8f55d06ee1a74404"
+  },
+  "gender": "male",
+  "age": 55,
+  "healthPoints": 100,
+  "figure": "fat",
+  "religion": "pasta",
+  "profession": "coder",
+  "maritalStatus": "Taken",
+  "physicalGlobal": [],
+  "physical": [
+    {
+      "Test": "100"
+    }
+  ],
+  "knowledgeGlobal": [],
+  "knowledge": [
+    {}
+  ],
+  "socialGlobal": [],
+  "social": [
+    {
+      "test 2": "100",
+      "dasd": "100"
+    }
+  ],
+  "inventory": [],
+  "notes": [],
+  "state": "saved",
+  "createdAt": {
+    "$date": "2021-11-24T00:51:01.522Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-24T00:51:01.522Z"
+  },
+  "__v": 0
 }]

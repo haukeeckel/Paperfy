@@ -11,8 +11,8 @@
   "isGameMaster": false,
   "status": "Hey Fellows, ready to dive in?",
   "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Hauke.svg",
-  "playerExp": "LOW",
-  "gameMasterExp": "NONE",
+  "playerExp": "high",
+  "gameMasterExp": "none",
   "characters": [
     {
       "$oid": "6199248d3fa4a5d6865c5bea"
@@ -29,17 +29,20 @@
       "$oid": "61995226b728ddbd7f986d4a"
     }
   ],
-  "location": "Unknown",
+  "location": "Germany",
   "languages": [
-    "Unknown"
+    "german"
   ],
   "createdAt": {
     "$date": "2021-11-20T16:26:02.566Z"
   },
   "updatedAt": {
-    "$date": "2021-11-20T16:39:11.209Z"
+    "$date": "2021-11-23T18:42:23.049Z"
   },
-  "__v": 0
+  "__v": 0,
+  "birthDate": {
+    "$date": "1990-09-02T00:00:00Z"
+  }
 },{
   "_id": {
     "$oid": "61992223dfb7a0cd3495e14c"
@@ -53,8 +56,8 @@
   "isGameMaster": true,
   "status": "Hey Fellows, ready to dive in?",
   "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Maik.svg",
-  "playerExp": "MEDIUM",
-  "gameMasterExp": "LOW",
+  "playerExp": "medium",
+  "gameMasterExp": "low",
   "characters": [
     {
       "$oid": "6199255bb728ddbd7f986d11"
@@ -98,15 +101,28 @@
   "isGameMaster": true,
   "status": "Hey Fellows, ready to dive in?",
   "avatar": "https://avatars.dicebear.com/api/croodles-neutral/DM-Anish.svg",
-  "playerExp": "HIGH",
-  "gameMasterExp": "HIGH",
-  "characters": [],
+  "playerExp": "high",
+  "gameMasterExp": "high",
+  "characters": [
+    {
+      "$oid": "619cf436649963d5947c6b95"
+    },
+    {
+      "$oid": "619d21c32beb0ca0c94547ac"
+    }
+  ],
   "adventures": [
     {
       "$oid": "61995226b728ddbd7f986d4a"
     },
     {
       "$oid": "619959e1b728ddbd7f986d5c"
+    },
+    {
+      "$oid": "619cf1d81147abb17831e89a"
+    },
+    {
+      "$oid": "619cf26b1147abb17831e8b3"
     }
   ],
   "location": "Unknown",
@@ -117,9 +133,9 @@
     "$date": "2021-11-20T16:29:07.455Z"
   },
   "updatedAt": {
-    "$date": "2021-11-20T16:29:07.455Z"
+    "$date": "2021-11-23T17:15:47.568Z"
   },
-  "__v": 0
+  "__v": 2
 },{
   "_id": {
     "$oid": "619922b8b972d209af0e19db"
@@ -133,8 +149,8 @@
   "isGameMaster": true,
   "status": "Hey Fellows, ready to dive in?",
   "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Tester.svg",
-  "playerExp": "MEDIUM",
-  "gameMasterExp": "MEDIUM",
+  "playerExp": "medium",
+  "gameMasterExp": "medium",
   "characters": [
     {
       "$oid": "61995063b728ddbd7f986d3d"
@@ -162,4 +178,39 @@
     "$date": "2021-11-20T16:30:48.214Z"
   },
   "__v": 0
+},{
+  "_id": {
+    "$oid": "619cd03a8f55d06ee1a74404"
+  },
+  "username": "Hans",
+  "email": "hans@test.com",
+  "password": "$2a$12$7eXiDDT.j.9ufsnnxxlkIOA117yVglzS1vlx1bmV3p7rpS59gGJIm",
+  "firstName": "Unknown",
+  "lastName": "Unknown",
+  "isPlayer": true,
+  "isGameMaster": false,
+  "status": "Hey Fellows, ready to dive in?",
+  "avatar": "https://avatars.dicebear.com/api/croodles-neutral/Marvin.svg",
+  "playerExp": "low",
+  "gameMasterExp": "none",
+  "characters": [
+    {
+      "$oid": "619d8c75ee615b337bc00d0d"
+    }
+  ],
+  "adventures": [],
+  "location": "Germany",
+  "languages": [
+    "Unknown"
+  ],
+  "createdAt": {
+    "$date": "2021-11-23T11:27:54.995Z"
+  },
+  "updatedAt": {
+    "$date": "2021-11-24T00:51:01.532Z"
+  },
+  "__v": 1,
+  "birthDate": {
+    "$date": "2002-02-05T00:00:00Z"
+  }
 }]

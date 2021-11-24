@@ -77,8 +77,8 @@ router.get("/adventure/:id/applicants", async (req, res) => {
     res.render("adventure/applicants", {
       adventure,
       loggedIn,
-      isMyGame,
       isApplied,
+      isMyGame,
     });
     // res.render("adventure/applicants", { adventure });
   } catch (err) {
@@ -111,6 +111,7 @@ router.get("/adventure/:id", async (req, res) => {
 
       isMyGame = adventure.gameMasterId._id == _id;
     }
+
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
     adventure.time = adventure.startDate.toISOString().slice(11, 16);
