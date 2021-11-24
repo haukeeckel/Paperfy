@@ -28,6 +28,7 @@ router.get("/adventure/:id/apply", async (req, res) => {
 router.post("/adventure/:id/apply", async (req, res) => {
   const { adventureId, message, characterId } = req.params;
   const { _id } = req.session.keks;
+
   try {
     const user = await User.findById(_id);
     const adventure = await Adventure.findById(adventureId);
@@ -36,13 +37,35 @@ router.post("/adventure/:id/apply", async (req, res) => {
       message,
       characterId,
     };
+
     if (user.playerExp == "high") {
       adventure.applicantsIds.push(applicant);
     } else if (adventure.expierience != "low" && user.playerExp == "medium") {
-      adventure.applicantsIds.push(applicant);
+      adventure.applicants.push(applicant);
     } else if (adventure.expierience == "low") {
-      adventure.applicantsIds.push(applicant);
+      adventure.applicants.push(applicant);
     }
+  } catch (err) {
+    res.sendStatus(400);
+  }
+});
+
+/* ------ Applicants ------ */
+router.get("/adventure/:id/applicants", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const adventure = await Adventure.findById(id)
+      .populate("applicants.userId")
+      .populate("applicants.characterId")
+      .populate("gameMasterId");
+
+    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+    adventure.start = adventure.startDate.toISOString().slice(0, 10);
+    adventure.time = adventure.startDate.toISOString().slice(11, 16);
+
+    res.render("adventure/applicants", { adventure });
+    // res.render("adventure/applicants", { adventure });
   } catch (err) {
     res.sendStatus(400);
   }
