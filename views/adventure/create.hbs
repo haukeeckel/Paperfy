@@ -24,9 +24,10 @@
               id="adventureName"
               name="adventureName"
               type="text"
+              value="{{adventureName}}"
             /></li>
           <li class="user-data-item"><select id="gameSystem" name="gameSystem">
-              <option value="How to be a Hero">How to be a Hero</option>
+              <option value="How to be a Hero"></option>
               <option value="others">Others</option>
             </select>
           </li>
@@ -34,17 +35,20 @@
               id="startDate"
               name="startDate"
               type="date"
+              value="{{prevInputDate}}"
             /></li>
           <li class="user-data-item"><input
               id="startTime"
               name="startTime"
               type="time"
+              value="{{startTime}}"
             /></li>
           <li class="user-data-item"><input
               id="groupSize"
               name="groupSize"
               type="number"
               max="8"
+              value="{{groupSize}}"
             /></li>
           <li class="user-data-item"><select id="plattform" name="plattform">
               <option value="Discord">Discord</option>
@@ -70,6 +74,7 @@
               name="estimatedTime"
               type="number"
               max="360"
+              value="estimatedTime"
             /></li>
           <li class="user-data-item"><select
               id="communication"
@@ -84,6 +89,7 @@
               name="plot"
               type="text"
               maxlength="280"
+              value="plot"
             /></li>
         </ul>
       </div>
