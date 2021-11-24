@@ -4,11 +4,9 @@
   {{> adventureSubmenu}}
 
   <article class="user-profil-showcase-container flex-row-center">
-  <h3 class="user-profil-showcase-title">Characters:</h3>
-  {{#each adventure.participantIds}}
-    <a href="/character/{{this._id}}" class="user-profil-showcase">{{this.characterName}}</a>
+  <h3 class="user-profil-showcase-title">Applicants:</h3>
+  {{#each adventure.applicants}}
+    <a href="/user/{{this.userId._id}}" class="user-profil-showcase">{{this.userId.username}}</a>
   {{/each}}
 </article>
-
-
 <section>

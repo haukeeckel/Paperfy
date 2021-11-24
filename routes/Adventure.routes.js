@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const Adventure = require("../models/Adventure.model");
+const User = require("../models/User.model");
 
 /* ------ Authorization ------ */
 
 /* ------ Join ------ */
-router.get("/adventure/apply", async (req, res) => {
+router.get("/adventure/:id/apply", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -21,17 +22,47 @@ router.get("/adventure/apply", async (req, res) => {
   }
 });
 
-router.post("/adventure/apply", async (req, res) => {
+router.post("/adventure/:id/apply", async (req, res) => {
+  const { adventureId, message, characterId } = req.params;
+  const { _id } = req.session.keks;
+
+  try {
+    const user = await User.findById(_id);
+    const adventure = await Adventure.findById(adventureId);
+    const applicant = {
+      user: user._id,
+      message,
+      characterId,
+    };
+
+    if (user.playerExp == "high") {
+      adventure.applicantsIds.push(applicant);
+    } else if (adventure.expierience != "low" && user.playerExp == "medium") {
+      adventure.applicants.push(applicant);
+    } else if (adventure.expierience == "low") {
+      adventure.applicants.push(applicant);
+    }
+  } catch (err) {
+    res.sendStatus(400);
+  }
+});
+
+/* ------ Applicants ------ */
+router.get("/adventure/:id/applicants", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const adventure = await Adventure.findById(id);
-    if (adventure) {
-      res.status(200).json(adventure);
-    } else {
-      // adventure._id == null => correct ObjectId format but not found
-      res.sendStatus(400);
-    }
+    const adventure = await Adventure.findById(id)
+      .populate("applicants.userId")
+      .populate("applicants.characterId")
+      .populate("gameMasterId");
+
+    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+    adventure.start = adventure.startDate.toISOString().slice(0, 10);
+    adventure.time = adventure.startDate.toISOString().slice(11, 16);
+
+    res.json(adventure);
+    // res.render("adventure/applicants", { adventure });
   } catch (err) {
     // wrong ObjectId format
     res.sendStatus(400);
