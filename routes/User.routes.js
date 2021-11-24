@@ -204,7 +204,7 @@ router.get("/me", async (req, res, next) => {
 router.get("/user/:_id", async (req, res, next) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  const isMe = isItMe(_id, req.session.keks);
+  const atHome = isItMe(_id, req.session.keks._id);
 
   try {
     const user = await User.findById({ _id }).populate("adventures");
@@ -213,7 +213,7 @@ router.get("/user/:_id", async (req, res, next) => {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
 
-    res.render("user/profile", { user, loggedIn, isMe });
+    res.render("user/profile", { user, loggedIn, atHome });
   } catch (err) {
     next(err);
   }
@@ -223,10 +223,10 @@ router.get("/user/:_id", async (req, res, next) => {
 router.get("/user/:_id/character", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  let isMe = false;
+  let atHome = false;
 
   if (req.session.keks) {
-    isMe = isItMe(_id, req.session.keks._id);
+    atHome = isItMe(_id, req.session.keks._id);
   }
 
   try {
@@ -234,7 +234,7 @@ router.get("/user/:_id/character", async (req, res) => {
       characters: { $slice: 5 },
     }).populate("characters");
 
-    res.render("user/profileCharacters", { user, loggedIn, isMe });
+    res.render("user/profileCharacters", { user, loggedIn, atHome });
   } catch (err) {
     res.sendStatus(400);
   }
@@ -244,10 +244,10 @@ router.get("/user/:_id/character", async (req, res) => {
 router.get("/user/:_id/adventure", async (req, res) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  let isMe = false;
+  let atHome = false;
 
   if (req.session.keks) {
-    isMe = isItMe(_id, req.session.keks._id);
+    atHome = isItMe(_id, req.session.keks._id);
   }
 
   try {
@@ -263,7 +263,7 @@ router.get("/user/:_id/adventure", async (req, res) => {
 
     await user.populate("adventures");
 
-    res.render("user/profileAdventures", { user, loggedIn, isMe });
+    res.render("user/profileAdventures", { user, loggedIn, atHome });
   } catch (err) {
     res.sendStatus(400);
   }
