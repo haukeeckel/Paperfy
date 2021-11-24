@@ -193,6 +193,7 @@
 }
 .applicationHead p {
   min-width: 31rem;
+  width: 100%;
 }
 .applicantsP {
   text-align: start;
@@ -250,4 +251,34 @@
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0 0 0 1rem;
   font-size: 0.8rem;
+}
+
+#userExp {
+  margin-block-end: 2rem;
+  margin-block-start: 0.5rem;
+  background-color: #fff;
+  border: 2px solid #374957;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+.plotContainer {
+  min-width: 23rem;
+}
+
+.plotContainer textarea {
+  resize: none;
+  text-align: start;
+  background-color: #fff;
+  border: 2px solid #374957;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  height: 10rem;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+.plotContainer button {
+  width: 7rem;
 }

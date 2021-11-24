@@ -21,18 +21,23 @@
     </div>
   </div>
 
-<h4>Experience</h4>
-  <div id="user-data" class="flex-row-center">
+  <h4>Experience</h4>
+  <div id="userExp" class="flex-row-center">
     <div>
-    <ul id="user-data-description">
-      {{#if user.isPlayer}}<li class="user-data-item">Player:</li>{{/if}}
-      {{#if user.isGameMaster}}<li class="user-data-item">Game Master:</li>{{/if}}
+      <ul class="user-data-description">
+        {{#if user.isPlayer}}<li class="user-data-item">Player:</li>{{/if}}
+        {{#if user.isGameMaster}}<li class="user-data-item">Game Master:</li>{{/if}}
+      </ul>
     </div>
     <div>
-    <ul class="user-data-items">
-      {{#if user.isPlayer}}<li class="user-data-item">{{user.playerExp}}</li>{{/if}}
-      {{#if user.isGameMaster}}<li class="user-data-item">{{user.gameMasterExp}}</li>{{/if}}
-    </ul>
-  </div>
+      <ul class="user-data-items">
+        {{#if user.isPlayer}}<li
+            class="user-data-item"
+          >{{user.playerExp}}</li>{{/if}}
+        {{#if user.isGameMaster}}<li
+            class="user-data-item"
+          >{{user.gameMasterExp}}</li>{{/if}}
+      </ul>
+    </div>
   </div>
 </section>

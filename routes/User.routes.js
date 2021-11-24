@@ -495,9 +495,15 @@ router.post("/me/character/create", loggedIn, async (req, res) => {
   }
 });
 
-router.get("/me/adventure/create", isGameMaster, (req, res) => {
+router.get("/me/adventure/create", isGameMaster, async (req, res, next) => {
   const loggedIn = !!req.session.keks;
-  res.render("adventure/create", { loggedIn });
+  const { _id } = req.session.keks;
+  try {
+    const user = await User.findById(_id);
+    res.render("adventure/create", { loggedIn, user });
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/me/adventure/create", isGameMaster, async (req, res) => {
