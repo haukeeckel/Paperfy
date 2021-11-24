@@ -7,15 +7,18 @@ const User = require("../models/User.model");
 /* ------ Join ------ */
 router.get("/adventure/:id/apply", async (req, res) => {
   const { id } = req.params;
+  const loggedIn = !!req.session.keks;
+  let isApplied = false;
+  let _id;
 
   try {
-    const adventure = await Adventure.findById(id);
-    if (adventure) {
-      res.status(200).json(adventure);
-    } else {
-      // adventure._id == null => correct ObjectId format but not found
-      res.sendStatus(400);
+    let adventure = await Adventure.findById(id).populate("gameMasterId");
+    if (req.session.keks) {
+      _id = req.session.keks;
+      isApplied = adventure.userIds.includes(_id);
     }
+    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+    res.render("adventure/apply", { loggedIn, adventure, isApplied });
   } catch (err) {
     // wrong ObjectId format
     res.sendStatus(400);
@@ -61,10 +64,9 @@ router.get("/adventure/:id/applicants", async (req, res) => {
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
     adventure.time = adventure.startDate.toISOString().slice(11, 16);
 
-    res.json(adventure);
+    res.render("adventure/applicants", { adventure });
     // res.render("adventure/applicants", { adventure });
   } catch (err) {
-    // wrong ObjectId format
     res.sendStatus(400);
   }
 });
@@ -111,7 +113,6 @@ router.get("/adventure/:id/characters", async (req, res) => {
       isApplied = adventure.userIds.includes(_id);
     }
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
-
     if (adventure) {
       res.render("adventure/character", { loggedIn, adventure, isApplied });
     } else {
