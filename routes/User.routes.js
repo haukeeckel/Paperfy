@@ -327,10 +327,13 @@ router.post("/me/edit", async (req, res, next) => {
     const checkPW = bcrypt.compareSync(password, user.password);
 
     if (!checkPW) {
+      const errors = {
+        passwordConf: "Please enter your current password!",
+      };
       res.render("user/edit", {
         user,
         loggedIn,
-        errors: "Please make sure to enter your current password!",
+        errors,
       });
       return;
     }
@@ -464,9 +467,6 @@ router.post("/me/character/create", loggedIn, async (req, res, next) => {
     next(err);
   }
 });
-
-// ----------------------------------------
-// to sort:
 
 router.get("/me/adventure/create", isGameMaster, (req, res) => {
   const loggedIn = !!req.session.keks;

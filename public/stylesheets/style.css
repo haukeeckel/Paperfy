@@ -393,22 +393,22 @@ main {
   text-decoration: underline;
   text-align: center;
   font-size: 2.5rem;
-  margin: 2rem 0 1rem 0;
+  margin: 2rem 0 0rem 0;
 }
 
 #filterPage > p {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 1rem 0 1rem 0;
-  padding: 0 13rem 0 13rem;
+  padding: 0 10rem 0 10rem;
 }
 
 .filterClass {
   background-color: #fcf8e3;
   border: 4px solid var(--blueGray);
   border-radius: 5px;
-  margin: 3rem auto;
-  padding: 3rem 0rem 2rem 0rem;
+  margin: 2.5rem auto;
+  padding: 2.5rem 0rem 1.5rem 0rem;
   font-size: 1.7rem;
   max-width: 40rem;
 }

@@ -88,3 +88,59 @@
 .editButton:active {
   color: #2cc5fa;
 }
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+  align-self: flex-start;
+}
+
+.landingPage > h1 {
+  font-size: 3rem;
+  margin: 2rem 0rem 0.6rem 0rem;
+}
+
+.landingPage > p {
+  font-size: 1.3rem;
+  margin: 0 0 3rem 0;
+}
+
+.landingPage h2 {
+  margin: 0 0 2rem 0;
+  text-decoration: underline;
+}
+
+.landingContainer {
+  color: #374957;
+  margin: 1rem;
+  padding: 1rem 0.5rem 0rem 0.5rem;
+  min-height: 15rem;
+  width: 11rem;
+}
+
+.landingContainer > h3 {
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.landingContainer > p {
+  color: #374957;
+  background-color: #ffffff;
+  border: 3px solid #374957;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 1rem 0.5rem 0rem 0.5rem;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  min-height: 10rem;
+}
+
+#landingP {
+  margin: 1.5rem 0 0 0;
+  padding: 0 10rem 0 10rem;
+}
+
+#landingP a {
+  text-decoration: underline;
+}
