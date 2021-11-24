@@ -30,6 +30,7 @@ const AdventureSchema = new Schema(
           ref: "Character",
         },
       },
+      { _id: true },
     ],
     userIds: {
       type: [Schema.Types.ObjectId],

@@ -10,15 +10,16 @@ router.get("/adventure/:id/apply", async (req, res) => {
   const loggedIn = !!req.session.keks;
   let isApplied = false;
   let _id;
-
+  let user;
   try {
     let adventure = await Adventure.findById(id).populate("gameMasterId");
     if (req.session.keks) {
       _id = req.session.keks;
       isApplied = adventure.userIds.includes(_id);
+      user = await User.findById(_id).populate("characters");
     }
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
-    res.render("adventure/apply", { loggedIn, adventure, isApplied });
+    res.render("adventure/apply", { loggedIn, adventure, isApplied, user });
   } catch (err) {
     // wrong ObjectId format
     res.sendStatus(400);
@@ -26,25 +27,30 @@ router.get("/adventure/:id/apply", async (req, res) => {
 });
 
 router.post("/adventure/:id/apply", async (req, res) => {
-  const { adventureId, message, characterId } = req.params;
+  const { message, characterId } = req.body;
   const { _id } = req.session.keks;
+  const { id } = req.params;
 
   try {
     const user = await User.findById(_id);
-    const adventure = await Adventure.findById(adventureId);
+    const adventure = await Adventure.findById(id);
     const applicant = {
-      user: user._id,
+      userId: user._id,
       message,
       characterId,
     };
 
     if (user.playerExp == "high") {
-      adventure.applicantsIds.push(applicant);
+      adventure.applicants.push(applicant);
+      await adventure.save();
     } else if (adventure.expierience != "low" && user.playerExp == "medium") {
       adventure.applicants.push(applicant);
+      await adventure.save();
     } else if (adventure.expierience == "low") {
       adventure.applicants.push(applicant);
+      await adventure.save();
     }
+    res.redirect(`/adventure/${id}`);
   } catch (err) {
     res.sendStatus(400);
   }
@@ -73,7 +79,6 @@ router.get("/adventure/:id/applicants", async (req, res) => {
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
     adventure.time = adventure.startDate.toISOString().slice(11, 16);
-
     res.render("adventure/applicants", {
       adventure,
       loggedIn,
@@ -86,9 +91,41 @@ router.get("/adventure/:id/applicants", async (req, res) => {
   }
 });
 
-router.post("/adventure/:id/applicants/accept", async (req, res) => {});
+router.post("/adventure/:id/applicants/accept", async (req, res, next) => {
+  const { id } = req.params;
+  const { applicantsId } = req.body;
 
-router.post("/adventure/:id/applicants/reject", async (req, res) => {});
+  try {
+    const adventure = await Adventure.findById(id);
+    let applicant = adventure.applicants.filter((applicant) => {
+      return applicant._id == applicantsId;
+    });
+
+    adventure.participantIds.push(applicant[0].characterId);
+    adventure.userIds.push(applicant[0].userId);
+
+    await adventure.applicants.pull({ _id: applicantsId });
+    await adventure.save();
+
+    res.redirect(`/adventure/${id}/applicants`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/adventure/:id/applicants/reject", async (req, res, next) => {
+  const { id } = req.params;
+  const { applicantsId } = req.body;
+
+  try {
+    const adventure = await Adventure.findById(id);
+    await adventure.applicants.pull({ _id: applicantsId });
+    await adventure.save();
+    res.redirect(`/adventure/${id}/applicants`);
+  } catch (err) {
+    next(err);
+  }
+});
 
 /* ------ Browse ------ */
 router.get("/adventure/:id", async (req, res) => {
