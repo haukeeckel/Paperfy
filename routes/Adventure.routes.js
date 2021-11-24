@@ -133,6 +133,7 @@ router.get("/adventure/:id", async (req, res) => {
   const loggedIn = !!req.session.keks;
   let isApplied = false;
   let isMyGame = false;
+  let camCommun = false;
   let _id;
 
   try {
@@ -152,7 +153,7 @@ router.get("/adventure/:id", async (req, res) => {
 
       isMyGame = adventure.gameMasterId._id == _id;
     }
-
+    camCommun = adventure.communication == "Voice and Camera";
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
     adventure.time = adventure.startDate.toISOString().slice(11, 16);
@@ -163,6 +164,7 @@ router.get("/adventure/:id", async (req, res) => {
         adventure,
         isApplied,
         isMyGame,
+        camCommun,
       });
     } else {
       res.sendStatus(400);

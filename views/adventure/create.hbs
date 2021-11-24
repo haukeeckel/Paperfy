@@ -1,7 +1,12 @@
-<section id="user-overview-section" class="sec flex-clm-center">
+{{> userProfile}}
 
+<section id="user-overview-section" class="sec flex-clm-center">
+ {{> userSubmenu}}
+
+ <div class="flex-clm-center adventureContainer">
   <h3>Create a new Adventure</h3>
   <form action="/me/adventure/create" method="post">
+  <div class="flex-clm-center">
     <div id="user-data" class="flex-row-center">
       <div>
         <ul class="user-data-description">
@@ -15,7 +20,7 @@
           <li class="user-data-item">Experience:</li>
           <li class="user-data-item">Estimated Time (min):</li>
           <li class="user-data-item">Communication:</li>
-          <li class="user-data-item">Plot:</li>
+
         </ul>
       </div>
       <div>
@@ -84,16 +89,25 @@
               <option value="Voice and Camera">Voice and Camera</option>
             </select>
           </li>
-          <li class="user-data-item"><input
-              id="plot"
-              name="plot"
-              type="text"
-              maxlength="280"
-              value="plot"
-            /></li>
+          <li class="user-data-item"></li>
         </ul>
       </div>
+
     </div>
-    <button style="display: block;">Create</button>
+      <div class="flex-clm-center plotContainer">
+
+           <p class="user-data-item">Plot:</p>
+              <textarea
+                    id="plot"
+                    name="plot"
+                    type="text"
+                    maxlength="280"
+                    value="plot"/></textarea>
+            <button class="filterButton skipLink" style="display: block;">Create</button>
+        </div>
+
+    </div>
+
   </form>
+  </div>
 </section>
