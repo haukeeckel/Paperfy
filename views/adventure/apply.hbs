@@ -3,15 +3,25 @@
 <section id="user-overview-section" class="sec flex-clm-center">
   {{> adventureSubmenu}}
 
-  
-    <h3>Apply</h3>
-    <div id="user-data" class="flex-row-center">
-      <form action="/adventure/{{adventure._id}}/apply" method="post">
-      <div>
-        
-      </div>
+    <div id="" class="applyClass">
+      <form action="/adventure/{{adventure._id}}/apply" method="post" id="applyForm">
+     
+      <select name="characterId">
+            <option value="">No Character</option>
+            {{#each user.characters}}
+            <option value="{{this._id}}">{{this.characterName}}</option>
+            {{/each}}
+      </select>
+        <textarea
+          id="applyInput"
+          name="message"
+          type="text"
+          placeholder="Here you can ask the game master to join the group and be part of the adventure."
+      /></textarea>
+     
 
-        <button>Apply</button>
+        <button class="filterButton skipLink">Apply</button>
+        
       </form>
 
     </div>

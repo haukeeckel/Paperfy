@@ -144,3 +144,40 @@
 #landingP a {
   text-decoration: underline;
 }
+
+.applyClass {
+  border: 3px solid #374957;
+  background-color: #fcf8e3;
+  border-radius: 5px;
+  padding: 2rem;
+  margin: 3rem 0 0 0;
+}
+
+.applyClass textarea {
+  border: 3px solid #374957;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-height: 15rem;
+  min-width: 20rem;
+}
+#applyForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#applyInput {
+  text-align: start;
+  padding: 1rem;
+}
+
+#applyForm > button {
+  display: flex;
+  margin: 2rem auto 0 auto;
+  width: fit-content;
+}
+.applicationHead p {
+  min-width: 31rem;
+}
+.applicantsP {
+  text-align: start;
+}

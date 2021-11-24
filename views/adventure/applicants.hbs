@@ -5,8 +5,26 @@
 
   <article class="user-profil-showcase-container flex-row-center">
   <h3 class="user-profil-showcase-title">Applicants:</h3>
+  <div  id="adventureSection">
   {{#each adventure.applicants}}
-    <a href="/user/{{this.userId._id}}" class="user-profil-showcase">{{this.userId.username}}</a>
+
+  <a href="/user/{{this.userId._id}}" class="adventureListing">
+
+    <img class="filterPicture" src="{{this.userId.avatar}}" />
+    
+    <div class="adventureListingHead applicationHead">
+      <h3>{{this.userId.username}}      
+        
+    {{#if this.characterId.characterName}}
+     <span> with "{{this.characterId.characterName}}"</span>
+     {{/if}}</h3>     
+     <form action="" method="post"><button>Accept</button></form>
+     <form action=""method="post"><button>Reject</button></form>
+
+     <p class="applicantsP">{{this.message}}</p>
+    </div>
+    </a>
   {{/each}}
+  </div>
 </article>
 <section>
