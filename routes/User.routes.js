@@ -422,7 +422,7 @@ router.get("/me/character/create", loggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/me/character/create", loggedIn, async (req, res, next) => {
+router.post("/me/character/create", loggedIn, async (req, res) => {
   const { _id: userId } = req.session.keks;
   const {
     characterName,
@@ -478,7 +478,20 @@ router.post("/me/character/create", loggedIn, async (req, res, next) => {
 
     res.redirect("/me");
   } catch (err) {
-    next(err);
+    const user = await User.findById(userId);
+
+    res.render("character/create", {
+      user,
+      characterName,
+      gender,
+      figure,
+      profession,
+      age,
+      healthPoints,
+      religion,
+      maritalStatus,
+      loggedIn: true,
+    });
   }
 });
 
