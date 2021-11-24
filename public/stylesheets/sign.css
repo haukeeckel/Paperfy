@@ -149,8 +149,17 @@
   border: 3px solid #374957;
   background-color: #fcf8e3;
   border-radius: 5px;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
   margin: 3rem 0 0 0;
+}
+.applyClass h3 {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  border: 3px solid #374957;
+  background-color: #fcf8e3;
+  border-radius: 5px;
+  padding: 0.5rem 0 0.5rem 0;
 }
 
 .applyClass textarea {
@@ -159,6 +168,13 @@
   font-size: 1rem;
   min-height: 15rem;
   min-width: 20rem;
+}
+.applyClass select {
+  text-align: center;
+  color: #374957;
+  font-size: 1rem;
+  margin: 0.5rem auto;
+  width: 10rem;
 }
 #applyForm {
   display: flex;
@@ -170,7 +186,7 @@
   padding: 1rem;
 }
 
-#applyForm > button {
+.applyClass > button {
   display: flex;
   margin: 2rem auto 0 auto;
   width: fit-content;
@@ -180,4 +196,58 @@
 }
 .applicantsP {
   text-align: start;
+}
+
+.adventureContainer {
+  min-width: 30rem;
+  border: 3px solid #374957;
+  background-color: #fcf8e3;
+  border-radius: 5px;
+  padding: 1.5rem 0.5rem 2rem 2rem;
+  margin-top: 2rem;
+}
+
+.adventureContainer h3 {
+  text-align: center;
+  border: 3px solid #374957;
+  background-color: #ffffff;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  margin: 0;
+}
+.adventureStats {
+  margin: 0 0 0 1.5rem;
+}
+.advPicDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 2.5rem 0rem 0rem 1rem;
+  padding: 0 0rem 0 0rem;
+}
+
+.advPicDiv > h4 {
+  padding: 0 0 3rem 0;
+}
+
+.adventureSectionRow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.adventureP {
+  text-align: start;
+  min-width: 23rem;
+  min-height: 10rem;
+  border: 3px solid #374957;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0 0 0 1rem;
+  font-size: 0.8rem;
 }

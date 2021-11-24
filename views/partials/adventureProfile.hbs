@@ -14,7 +14,11 @@
 
     <div>
       <ul class="user-data-items">
-        <li class="user-data-item">{{adventure.gameMasterId.username}}</li>
+        <li class="user-data-item">
+          <a href="/user/{{adventure.gameMasterId._id}}">
+            {{adventure.gameMasterId.username}}
+          </a>
+        </li>
         <li class="user-data-item">{{adventure.created}}</li>
       </ul>
     </div>

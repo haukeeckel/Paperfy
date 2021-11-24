@@ -4,14 +4,15 @@
   {{> adventureSubmenu}}
 
     <div id="" class="applyClass">
+      <h3>Select your character:
+
       <form action="/adventure/{{adventure._id}}/apply" method="post" id="applyForm">
-     
       <select name="characterId">
             <option value="">No Character</option>
             {{#each user.characters}}
             <option value="{{this._id}}">{{this.characterName}}</option>
             {{/each}}
-      </select>
+      </select></h3>
         <textarea
           id="applyInput"
           name="message"
