@@ -53,27 +53,26 @@ router.post("/adventure/:id/apply", async (req, res) => {
 /* ------ Applicants ------ */
 router.get("/adventure/:id/applicants", async (req, res) => {
   const { id } = req.params;
+  let isMyGame = false;
+  let isApplied = false;
   const loggedIn = !!req.session.keks;
   let _id;
-  let isApplied = false;
-  let isMyGame = false;
 
   try {
     const adventure = await Adventure.findById(id)
       .populate("applicants.userId")
       .populate("applicants.characterId")
       .populate("gameMasterId");
-
-    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
-    adventure.start = adventure.startDate.toISOString().slice(0, 10);
-    adventure.time = adventure.startDate.toISOString().slice(11, 16);
-
     if (req.session.keks) {
       _id = req.session.keks._id;
       isApplied =
         adventure.userIds.includes(_id) || adventure.gameMasterId._id == _id;
       isMyGame = adventure.gameMasterId._id == _id;
     }
+
+    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+    adventure.start = adventure.startDate.toISOString().slice(0, 10);
+    adventure.time = adventure.startDate.toISOString().slice(11, 16);
 
     res.render("adventure/applicants", {
       adventure,
@@ -147,7 +146,6 @@ router.get("/adventure/:id/characters", async (req, res) => {
       _id = req.session.keks._id;
       isApplied =
         adventure.userIds.includes(_id) || adventure.gameMasterId._id == _id;
-
       if (!isApplied) {
         adventure.applicants.forEach((elem) => {
           if (elem.userId == _id) {
