@@ -79,10 +79,16 @@ router.post("/signup", async (req, res, next) => {
 
 /* ------ INFO ------ */
 
-router.get("/signup/info", (req, res) => {
+router.get("/signup/info", async (req, res, next) => {
   const loggedIn = !!req.session.keks;
+  const { _id } = req.session.keks;
 
-  res.render("auth/info", { loggedIn });
+  try {
+    let user = await User.findById({ _id });
+    res.render("auth/info", { loggedIn, user });
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/signup/info", async (req, res, next) => {

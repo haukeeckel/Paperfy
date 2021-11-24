@@ -86,6 +86,10 @@ router.get("/adventure/:id/applicants", async (req, res) => {
   }
 });
 
+router.post("/adventure/:id/applicants/accept", async (req, res) => {});
+
+router.post("/adventure/:id/applicants/reject", async (req, res) => {});
+
 /* ------ Browse ------ */
 router.get("/adventure/:id", async (req, res) => {
   const { id } = req.params;
