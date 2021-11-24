@@ -500,7 +500,7 @@ router.get("/me/adventure/create", isGameMaster, (req, res) => {
   res.render("adventure/create", { loggedIn });
 });
 
-router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
+router.post("/me/adventure/create", isGameMaster, async (req, res) => {
   const { _id: gameMasterId } = req.session.keks;
 
   const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
@@ -516,6 +516,8 @@ router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
     estimatedTime,
     communication,
     plot,
+    startTime,
+    startDate: prevInputDate,
   } = req.body;
 
   const portrait = `https://avatars.dicebear.com/api/identicon/${adventureName}.svg`;
@@ -540,7 +542,23 @@ router.post("/me/adventure/create", isGameMaster, async (req, res, next) => {
     });
     res.redirect("/me");
   } catch (err) {
-    next(err);
+    const user = await User.findById(gameMasterId);
+
+    res.render("character/create", {
+      user,
+      adventureName,
+      gameSystem,
+      groupSize,
+      plattform,
+      language,
+      expierience,
+      estimatedTime,
+      communication,
+      plot,
+      prevInputDate,
+      loggedIn: true,
+      startTime,
+    });
   }
 });
 
