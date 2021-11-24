@@ -10,16 +10,11 @@
   "groupSize": 5,
   "plattform": "Zoom",
   "language": "german",
-  "expierience": "LOW",
+  "expierience": "low",
   "estimatedTime": 120,
   "communication": "CAM AND VOICE",
   "minAge": 18,
   "plot": "TEST PAPERFY ADVENTURES",
-  "applicantsIds": [
-    {
-      "$oid": "61995063b728ddbd7f986d3d"
-    }
-  ],
   "gameMasterId": {
     "$oid": "61992253dfb7a0cd3495e14e"
   },
@@ -43,7 +38,27 @@
   "portrait": "https://avatars.dicebear.com/api/identicon/testGame.svg",
   "createdAt": {
     "$date": "2021-11-01T16:26:02.566Z"
-  }
+  },
+  "applicants": [
+    {
+      "characterId": {
+        "$oid": "61995063b728ddbd7f986d3d"
+      },
+      "message": "Hey, I want to join!",
+      "userId": {
+        "$oid": "619922b8b972d209af0e19db"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "619cd03a8f55d06ee1a74404"
+      },
+      "message": "Hey I'm Hans, and I want to join....plz :)",
+      "characterId": {
+        "$oid": "619d8c75ee615b337bc00d0d"
+      }
+    }
+  ]
 },{
   "_id": {
     "$oid": "619959e1b728ddbd7f986d5c"
@@ -56,7 +71,7 @@
   "groupSize": 5,
   "plattform": "Zoom",
   "language": "german",
-  "expierience": "LOW",
+  "expierience": "low",
   "estimatedTime": 120,
   "communication": "CAM AND VOICE",
   "minAge": 18,
