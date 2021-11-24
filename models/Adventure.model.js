@@ -15,10 +15,22 @@ const AdventureSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: "Character",
     },
-    applicantsIds: {
-      type: [Schema.Types.ObjectId],
-      ref: "Character",
-    },
+    applicants: [
+      {
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        message: {
+          type: String,
+          required: true,
+        },
+        characterId: {
+          type: Schema.Types.ObjectId,
+          ref: "Character",
+        },
+      },
+    ],
     userIds: {
       type: [Schema.Types.ObjectId],
       ref: "User",

@@ -38,7 +38,7 @@ router.post("/adventure/:id/apply", async (req, res) => {
     };
     if (user.playerExp == "high") {
       adventure.applicantsIds.push(applicant);
-    } else if (adventure.expierience != "high" && user.playerExp == "medium") {
+    } else if (adventure.expierience != "low" && user.playerExp == "medium") {
       adventure.applicantsIds.push(applicant);
     } else if (adventure.expierience == "low") {
       adventure.applicantsIds.push(applicant);
