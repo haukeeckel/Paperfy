@@ -3,83 +3,97 @@
 <section id="user-overview-section" class="sec flex-clm-center">
   {{> userSubmenu}}
   {{> charactersSubmenu}}
+  
   <article class="user-profil-showcase-container flex-clm-center">
       <form method="POST" action="/me/character/create">
-      <section>
-        <label for="name">Enter your Characters Name</label>
-        <input
-          id="name"
-          name="characterName"
-          type="text"
-          placeholder="Characters Name"
-          value="{{characterName}}"
-        />
+      <section class="flex-row-center characterCreationSection">
+        <div>
+          <div class="flex-clm-center">
+            <label for="name">Enter your Characters Name</label>
+            <input
+            id="name"
+            name="characterName"
+            type="text"
+            placeholder="Name"
+            value="{{characterName}}"
+            />
+          </div>
+          <div class="flex-row-center">
+            <div class="flex-clm-center characterInputInfo">
+              <label for="gender">Gender</label>
+              <input
+                id="gender"
+                name="gender"
+                type="text"
+                placeholder="Gender"
+                value="{{gender}}"
+              />
 
-        <label for="gender">Gender</label>
-        <input
-          id="gender"
-          name="gender"
-          type="text"
-          placeholder="Characters Gender"
-          value="{{gender}}"
-        />
+              <label for="figure">Figure</label>
+              <input
+                id="figure"
+                name="figure"
+                type="text"
+                placeholder="Figure"
+                value="{{figure}}"
+              />
 
-        <label for="figure">Figure</label>
-        <input
-          id="figure"
-          name="figure"
-          type="text"
-          placeholder="Characters Figure"
-          value="{{figure}}"
-        />
+              <label for="profession">Profession</label>
+              <input
+                id="profession"
+                name="profession"
+                type="text"
+                placeholder="Profession"
+                value="{{profession}}"
+              />
+            </div>
+            <div class="flex-clm-center characterInputInfo">
+              <div class="flex-row-center">
+                <div class="flex-clm-center">
+                  <label for="age">Age</label>
+                  <input
+                    id="age"
+                    name="age"
+                    type="number"
+                    placeholder="Age"
+                    value="{{age}}"
+                  />
+                </div>
+                <div class="flex-clm-center">
+                  <label for="healthPoints">Life Points</label>
+                  <input
+                    id="healthPoints"
+                    name="healthPoints"
+                    type="text"
+                    placeholder="Life Points"
+                    value="100"
+                  />
+                </div>
+              </div>
 
-        <label for="profession">Profession</label>
-        <input
-          id="profession"
-          name="profession"
-          type="text"
-          placeholder="Characters Profession"
-          value="{{profession}}"
-        />
+              <label for="religion">Religion</label>
+              <input
+                id="religion"
+                name="religion"
+                type="text"
+                placeholder="Religion"
+                value="{{religion}}"
+              />
 
-        <label for="age">Age</label>
-        <input
-          id="age"
-          name="age"
-          type="text"
-          placeholder="Characters Age"
-          value="{{age}}"
-        />
-
-        <label for="healthPoints">Life Points</label>
-        <input
-          id="healthPoints"
-          name="healthPoints"
-          type="text"
-          placeholder="Characters Life Points"
-          value="100"
-        />
-
-        <label for="religion">Religion</label>
-        <input
-          id="religion"
-          name="religion"
-          type="text"
-          placeholder="Characters Religion"
-          value="{{religion}}"
-        />
-
-        <label for="maritalStatus">Marital Status</label>
-        <input
-          id="maritalStatus"
-          name="maritalStatus"
-          type="text"
-          placeholder="Characters Material Status"
-          value="{{maritalStatus}}"
-        />
+              <label for="maritalStatus">Marital Status</label>
+              <input
+                id="maritalStatus"
+                name="maritalStatus"
+                type="text"
+                placeholder="Material Status"
+                value="{{maritalStatus}}"
+              />
+            </div>
+          </div>
+        </div>
       </section>
-      <section>
-        <article>
+      <section class="flex-row-center">
+        <article class="flex-clm-center characterSkillSection">
           <div>
             <input id="p1Key" name="p1Key" type="text" value="" /> <input id="p1Value" name="p1Value" type="number" /><span id="p1-global"></span><span id="p1-final"></span>
           </div>
@@ -111,7 +125,7 @@
             <input id="p10Key" name="p10Key" type="text" /> <input id="p10Value" name="p10Value" type="number" /><span id="p10-global"></span><span id="p10-final"></span>
           </div>
         </article>
-        <article>
+        <article class="flex-clm-center characterSkillSection">
           <div>
             <input id="k1Key" name="k1Key" type="text" /> <input id="k1Value" name="k1Value" type="number" /><span id="k1-global"></span><span id="k1-final"></span>
           </div>
@@ -143,7 +157,7 @@
             <input id="k10Key" name="k10Key" type="text" /> <input id="k10Value" name="k10Value" type="number" /><span id="k10-global"></span><span id="k10-final"></span>
           </div>
         </article>
-        <article>
+        <article class="flex-clm-center characterSkillSection">
           <div>
             <input id="s1Key" name="s1Key" type="text" /> <input id="s1Value" name="s1Value" type="number" /><span id="s1-global"></span><span id="s1-final"></span>
           </div>

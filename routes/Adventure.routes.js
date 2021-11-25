@@ -1,8 +1,17 @@
 const router = require("express").Router();
 const Adventure = require("../models/Adventure.model");
 const User = require("../models/User.model");
+const Character = require("../models/Character.model");
 
 /* ------ Authorization ------ */
+
+const isGameMaster = (req, res, next) => {
+  if (req.session.keks.isGameMaster) {
+    next();
+  } else {
+    res.status(400).redirect("/signin");
+  }
+};
 
 /* ------ Join ------ */
 router.get("/adventure/:id/apply", async (req, res) => {
@@ -11,6 +20,11 @@ router.get("/adventure/:id/apply", async (req, res) => {
   let isApplied = false;
   let _id;
   let user;
+
+  if (!req.session.keks) {
+    res.redirect("/signup");
+  }
+
   try {
     let adventure = await Adventure.findById(id).populate("gameMasterId");
     if (req.session.keks) {
@@ -103,6 +117,13 @@ router.post("/adventure/:id/applicants/accept", async (req, res, next) => {
 
     adventure.participantIds.push(applicant[0].characterId);
     adventure.userIds.push(applicant[0].userId);
+
+    await Character.findByIdAndUpdate(applicant[0].characterId, {
+      adventureId: adventure._id,
+    });
+    await User.findByIdAndUpdate(applicant[0].userId, {
+      $push: { adventures: adventure._id },
+    });
 
     await adventure.applicants.pull({ _id: applicantsId });
     await adventure.save();
@@ -212,6 +233,131 @@ router.get("/adventure/:id/characters", async (req, res) => {
     }
   } catch (err) {
     res.sendStatus(400);
+  }
+});
+
+router.get("/me/adventure/create", isGameMaster, async (req, res, next) => {
+  const loggedIn = !!req.session.keks;
+  const { _id } = req.session.keks;
+  try {
+    const user = await User.findById(_id);
+    res.render("adventure/create", { loggedIn, user });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/me/adventure/create", isGameMaster, async (req, res) => {
+  const { _id: gameMasterId } = req.session.keks;
+
+  const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
+  const startDate = new Date(startDateInput);
+
+  const {
+    adventureName,
+    gameSystem,
+    groupSize,
+    plattform,
+    language,
+    expierience,
+    estimatedTime,
+    communication,
+    plot,
+    startTime,
+    startDate: prevInputDate,
+  } = req.body;
+
+  const portrait = `https://avatars.dicebear.com/api/identicon/${adventureName}.svg`;
+
+  try {
+    const adventure = await Adventure.create({
+      gameMasterId,
+      adventureName,
+      gameSystem,
+      groupSize,
+      plattform,
+      language,
+      expierience,
+      estimatedTime,
+      communication,
+      plot,
+      startDate,
+      portrait,
+    });
+    await User.findByIdAndUpdate(gameMasterId, {
+      $push: { adventures: adventure._id },
+    });
+    res.redirect("/me");
+  } catch (err) {
+    const user = await User.findById(gameMasterId);
+
+    res.render("adventure/create", {
+      user,
+      adventureName,
+      gameSystem,
+      groupSize,
+      plattform,
+      language,
+      expierience,
+      estimatedTime,
+      communication,
+      plot,
+      prevInputDate,
+      loggedIn: true,
+      startTime,
+    });
+  }
+});
+
+router.get("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
+  const { _id } = req.params;
+
+  try {
+    const adventure = await Adventure.findById(_id);
+    res.render("adventure/edit", adventure);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
+  const { _id } = req.params;
+  const {
+    gameMasterId,
+    adventureName,
+    gameSystem,
+    startDate,
+    groupSize,
+    plattform,
+    language,
+    expierience,
+    estimatedTime,
+    communication,
+    minAge,
+    plot,
+  } = req.body;
+
+  try {
+    const adventure = await Adventure.findByIdAndUpdate(
+      { _id },
+      {
+        gameMasterId,
+        adventureName,
+        gameSystem,
+        startDate,
+        groupSize,
+        plattform,
+        language,
+        expierience,
+        estimatedTime,
+        communication,
+        minAge,
+        plot,
+      }
+    );
+    res.status(200).json(adventure);
+  } catch (err) {
+    next(err);
   }
 });
 

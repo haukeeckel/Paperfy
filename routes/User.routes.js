@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
-const Adventure = require("../models/Adventure.model");
-const Character = require("../models/Character.model");
 const bcrypt = require("bcryptjs");
 const {
   validateRegisterInput,
@@ -14,14 +12,6 @@ const loggedIn = (req, res, next) => {
     next();
   } else {
     res.status(400).redirect("/signup");
-  }
-};
-
-const isGameMaster = (req, res, next) => {
-  if (req.session.keks.isGameMaster) {
-    next();
-  } else {
-    res.status(400).redirect("/signin");
   }
 };
 
@@ -112,13 +102,17 @@ router.post("/signup/info", async (req, res, next) => {
   }
 
   try {
-    await User.findByIdAndUpdate(_id, {
+    const user = await User.findByIdAndUpdate(_id, {
       birthDate,
       location,
       playerExp,
       gameMasterExp,
       isGameMaster,
       languages,
+    });
+
+    req.session.regenerate(() => {
+      req.session.keks = user;
     });
 
     res.redirect("/me");
@@ -204,7 +198,11 @@ router.get("/me", async (req, res, next) => {
 router.get("/user/:_id", async (req, res, next) => {
   const { _id } = req.params;
   const loggedIn = !!req.session.keks;
-  const atHome = isItMe(_id, req.session.keks._id);
+  let atHome = false;
+
+  if (req.session.keks) {
+    atHome = isItMe(_id, req.session.keks._id);
+  }
 
   try {
     const user = await User.findById({ _id }).populate("adventures");
@@ -374,6 +372,9 @@ router.post("/me/edit", async (req, res, next) => {
         languages,
       }
     );
+    req.session.regenerate(() => {
+      req.session.keks = user;
+    });
 
     res.redirect("/me");
   } catch (err) {
@@ -405,216 +406,6 @@ router.post("/me/delete", loggedIn, async (req, res, next) => {
       res.status(400).json(errors);
       throw new Error("incorrect input");
     }
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/me/character/create", loggedIn, async (req, res, next) => {
-  const { _id } = req.session.keks;
-  const loggedIn = !!req.session.keks;
-
-  try {
-    const user = await User.findById(_id);
-    res.render("character/create.hbs", { loggedIn, user });
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/me/character/create", loggedIn, async (req, res) => {
-  const { _id: userId } = req.session.keks;
-  const {
-    characterName,
-    gender,
-    figure,
-    profession,
-    age,
-    healthPoints,
-    religion,
-    maritalStatus,
-    ...rest
-  } = req.body;
-
-  const portrait = `https://avatars.dicebear.com/api/croodles-neutral/${characterName}.svg`;
-  const physical = {};
-  const knowledge = {};
-  const social = {};
-
-  const skills = Object.values(rest);
-
-  for (let i = 0; i <= skills.length; i = i + 2) {
-    if (skills[i] != "") {
-      if (i <= 10) {
-        physical[skills[i]] = skills[i + 1];
-      } else if (i <= 20) {
-        knowledge[skills[i]] = skills[i + 1];
-      } else {
-        social[skills[i]] = skills[i + 1];
-      }
-    }
-  }
-
-  try {
-    const character = await Character.create({
-      characterName,
-      gender,
-      figure,
-      profession,
-      age,
-      healthPoints,
-      religion,
-      maritalStatus,
-      physical,
-      knowledge,
-      social,
-      portrait,
-      state: "saved",
-      userId,
-    });
-    const user = await User.findById(userId);
-    user.characters.push(character._id);
-    await user.save();
-
-    res.redirect("/me");
-  } catch (err) {
-    const user = await User.findById(userId);
-
-    res.render("character/create", {
-      user,
-      characterName,
-      gender,
-      figure,
-      profession,
-      age,
-      healthPoints,
-      religion,
-      maritalStatus,
-      loggedIn: true,
-    });
-  }
-});
-
-router.get("/me/adventure/create", isGameMaster, async (req, res, next) => {
-  const loggedIn = !!req.session.keks;
-  const { _id } = req.session.keks;
-  try {
-    const user = await User.findById(_id);
-    res.render("adventure/create", { loggedIn, user });
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/me/adventure/create", isGameMaster, async (req, res) => {
-  const { _id: gameMasterId } = req.session.keks;
-
-  const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
-  const startDate = new Date(startDateInput);
-
-  const {
-    adventureName,
-    gameSystem,
-    groupSize,
-    plattform,
-    language,
-    expierience,
-    estimatedTime,
-    communication,
-    plot,
-    startTime,
-    startDate: prevInputDate,
-  } = req.body;
-
-  const portrait = `https://avatars.dicebear.com/api/identicon/${adventureName}.svg`;
-
-  try {
-    const adventure = await Adventure.create({
-      gameMasterId,
-      adventureName,
-      gameSystem,
-      groupSize,
-      plattform,
-      language,
-      expierience,
-      estimatedTime,
-      communication,
-      plot,
-      startDate,
-      portrait,
-    });
-    await User.findByIdAndUpdate(gameMasterId, {
-      $push: { adventures: adventure._id },
-    });
-    res.redirect("/me");
-  } catch (err) {
-    const user = await User.findById(gameMasterId);
-
-    res.render("character/create", {
-      user,
-      adventureName,
-      gameSystem,
-      groupSize,
-      plattform,
-      language,
-      expierience,
-      estimatedTime,
-      communication,
-      plot,
-      prevInputDate,
-      loggedIn: true,
-      startTime,
-    });
-  }
-});
-
-router.get("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
-  const { _id } = req.params;
-
-  try {
-    const adventure = await Adventure.findById(_id);
-    res.render("adventure/edit", adventure);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
-  const { _id } = req.params;
-  const {
-    gameMasterId,
-    adventureName,
-    gameSystem,
-    startDate,
-    groupSize,
-    plattform,
-    language,
-    expierience,
-    estimatedTime,
-    communication,
-    minAge,
-    plot,
-  } = req.body;
-
-  try {
-    const adventure = await Adventure.findByIdAndUpdate(
-      { _id },
-      {
-        gameMasterId,
-        adventureName,
-        gameSystem,
-        startDate,
-        groupSize,
-        plattform,
-        language,
-        expierience,
-        estimatedTime,
-        communication,
-        minAge,
-        plot,
-      }
-    );
-    res.status(200).json(adventure);
   } catch (err) {
     next(err);
   }
