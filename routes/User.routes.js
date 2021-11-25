@@ -184,9 +184,26 @@ router.get("/me", async (req, res, next) => {
   try {
     const user = await User.findById({ _id }).populate("adventures");
 
+    user.adventures = await user.adventures
+      .filter((adventure) => {
+        return adventure.isActive == false;
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
     if (user.adventures.length >= 3) {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
+
+    await user.populate("adventures");
 
     res.render("user/profile", { user, loggedIn, atHome });
   } catch (err) {
@@ -207,9 +224,26 @@ router.get("/user/:_id", async (req, res, next) => {
   try {
     const user = await User.findById({ _id }).populate("adventures");
 
+    user.adventures = await user.adventures
+      .filter((adventure) => {
+        return adventure.isActive == false;
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
     if (user.adventures.length >= 3) {
       user.adventures = user.adventures.slice(0, user.adventures.length - 2);
     }
+
+    await user.populate("adventures");
 
     res.render("user/profile", { user, loggedIn, atHome });
   } catch (err) {
