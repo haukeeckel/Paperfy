@@ -4,26 +4,36 @@
   {{> userSubmenu}}
   {{> charactersSubmenu}}
 
-  <article class="user-profil-showcase-container flex-row-center">
-  <h3 class="user-profil-showcase-title">Adventure Details:</h3>
-  <article>
-    <p>{{adventure.estimatedTime}} min</p>
-    <h4>Game Master</h4>
-    <h4>{{adventure.gameMasterId.username}}</h4>
-    <h4>Player</h4>
-    <ol>
-      {{#each adventure.userIds}}
-        <li>
-          <a href="/user/{{this._id}}">{{this.username}}</a>
-        </li>
-      {{/each}}
-    </ol>
-    <h4>Game System</h4>
-    <p>{{adventure.gameSystem}}</p>
-    <h4>Language</h4>
-    <p>{{adventure.language}}</p>
-    <h4>Setting description</h4>
-    <p>{{adventure.plot}}</p>
-  </article>
-</article>
+ 
+<div class="flex-clm-center adventureContainer"> 
+  
+<h3>{{adventure.adventureName}}</h3>
+<div class="adventureSectionRow">
+<div class="advPicDiv">
+<img src="/images/fi-br-clock.png" alt=""><h4>~ {{adventure.estimatedTime}}min</h4>
+{{#if camCommun}}<img src="/images/fi-br-camera.png" alt=""><h4>required</h4>{{/if}}
+</div>
+
+<div id="user-data" class="flex-row-center adventureStats">
+  
+  <ul class= "user-data-description">
+    <li class="user-data-item">Game System:</li>
+    <li class="user-data-item">Player:</li>
+    <li class="user-data-item">Platform:</li>
+    <li class="user-data-item">Language:</li>
+    <li class="user-data-item">Experience:</li>
+   {{#if adventure.minAge}}<li class="user-data-item">Minimum Age:</li>{{/if}}
+ </ul>
+ <ul class="user-data-items">
+    <li class="user-data-item">{{adventure.gameSystem}}</li>
+    <li class="user-data-item">{{adventure.userIds.length}} / {{adventure.groupSize}}</li>
+    <li class="user-data-item">{{adventure.plattform}}</li>
+    <li class="user-data-item">{{adventure.language}}</li>
+    <li class="user-data-item">{{adventure.expierience}}</li>
+    {{#if adventure.minAge}}<li class="user-data-item">{{adventure.minAge}} years</li>{{/if}}
+ </ul>
+ </div>
+ </div>
+ <p class ="adventureP">{{adventure.plot}}</p>
+ </div> 
 </section>
