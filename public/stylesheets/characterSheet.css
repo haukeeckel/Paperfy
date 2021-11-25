@@ -1,0 +1,53 @@
+.characterCreationSection {
+  min-width: 25rem;
+  border: 3px solid #374957;
+  background-color: #fcf8e3;
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  margin-block-start: 2rem;
+}
+
+.characterInputInfo {
+  width: 50%;
+}
+
+#name {
+  width: 90%;
+}
+
+#gender {
+  width: 80%;
+}
+
+#figure {
+  width: 80%;
+}
+
+#profession {
+  width: 80%;
+}
+
+#age {
+  width: 60%;
+}
+
+#healthPoints {
+  width: 60%;
+}
+
+#religion {
+  width: 80%;
+}
+
+#maritalStatus {
+  width: 80%;
+}
+
+.characterSkillSection {
+  width: 12rem;
+  border: 3px solid #374957;
+  background-color: #fcf8e3;
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  margin-block-start: 2rem;
+}
