@@ -23,7 +23,7 @@
     <li class="user-data-item">Platform:</li>
     <li class="user-data-item">Language:</li>
     <li class="user-data-item">Experience:</li>
-    <li class="user-data-item">Minimum Age:</li>
+    {{#if adventure.minAge}}<li class="user-data-item">Minimum Age:</li>{{/if}}
  </ul>
  <ul class="user-data-items">
     <li class="user-data-item">{{adventure.gameSystem}}</li>
@@ -33,7 +33,7 @@
     <li class="user-data-item">{{adventure.plattform}}</li>
     <li class="user-data-item">{{adventure.language}}</li>
     <li class="user-data-item">{{adventure.expierience}}</li>
-    <li class="user-data-item">{{adventure.minAge}} years</li>
+  {{#if adventure.minAge}}<li class="user-data-item">{{adventure.minAge}} years</li>{{/if}}
  </ul>
  </div>
  </div>
