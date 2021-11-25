@@ -7,14 +7,6 @@ const {
   validateEditInput,
 } = require("../utilities/validators");
 
-const loggedIn = (req, res, next) => {
-  if (req.session.keks) {
-    next();
-  } else {
-    res.status(400).redirect("/signup");
-  }
-};
-
 const isItMe = (_id, cookie) => {
   if (_id === cookie) {
     return true;
@@ -113,9 +105,8 @@ router.post("/signup/info", async (req, res, next) => {
 
     req.session.regenerate(() => {
       req.session.keks = user;
+      res.redirect("/me");
     });
-
-    res.redirect("/me");
   } catch (err) {
     next(err);
   }
@@ -406,40 +397,10 @@ router.post("/me/edit", async (req, res, next) => {
         languages,
       }
     );
-    req.session.regenerate(() => {
+    await req.session.regenerate(() => {
       req.session.keks = user;
+      res.redirect("/me");
     });
-
-    res.redirect("/me");
-  } catch (err) {
-    next(err);
-  }
-});
-
-/* ------ Delete⚠️ ------ */
-// TODO Delete all Characters and set Adventure-Links to ['DELETED]'
-router.get("/me/delete", loggedIn, (req, res) => {
-  res.render("user/profile");
-});
-
-router.post("/me/delete", loggedIn, async (req, res, next) => {
-  const { password } = req.body;
-  const { _id } = req.session.keks;
-
-  try {
-    const user = await User.findById(_id);
-
-    const checkPW = bcrypt.compareSync(password, user.password);
-
-    if (checkPW) {
-      await User.findByIdAndDelete(_id);
-      req.session.destroy();
-      res.status(200).redirect("/");
-    } else {
-      const errors = { password: "You entered a wrong Password" };
-      res.status(400).json(errors);
-      throw new Error("incorrect input");
-    }
   } catch (err) {
     next(err);
   }
