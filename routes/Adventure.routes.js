@@ -66,7 +66,13 @@ router.post("/adventure/:id/apply", async (req, res) => {
     }
     res.redirect(`/adventure/${id}`);
   } catch (err) {
-    res.sendStatus(400);
+    const loggedIn = !!req.session.keks;
+    const adventure = await Adventure.findById(id).populate("gameMasterId");
+    adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+    let isApplied = false;
+    const user = await User.findById(_id).populate("characters");
+
+    res.render("adventure/apply", { loggedIn, adventure, isApplied, user });
   }
 });
 
