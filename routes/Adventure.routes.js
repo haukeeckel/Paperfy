@@ -154,6 +154,16 @@ router.post("/adventure/:id/applicants/reject", async (req, res, next) => {
   }
 });
 
+router.post("/adventure/:id/applicants/close", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await Adventure.findByIdAndUpdate(id, { isActive: false });
+    res.redirect(`/adventure/${id}`);
+  } catch (err) {
+    next(err);
+  }
+});
+
 /* ------ Browse ------ */
 router.get("/adventure/:id", async (req, res) => {
   const { id } = req.params;

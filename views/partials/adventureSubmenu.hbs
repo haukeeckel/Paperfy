@@ -10,18 +10,20 @@
       <h2>Characters</h2>
     </a>
   </li>
-  {{#if isMyGame}}
-    <li id="mastery-overview" class="user-overview-item">
-      <a href="/adventure/{{adventure._id}}/applicants">
-        <h2>Applicants</h2>
-      </a>
-    </li>
+  {{#if adventure.isActive}}
+    {{#if isMyGame}}
+      <li id="mastery-overview" class="user-overview-item">
+        <a href="/adventure/{{adventure._id}}/applicants">
+          <h2>Applicants</h2>
+        </a>
+      </li>
+    {{/if}}
+    {{#unless isApplied}}
+      <li id="mastery-overview" class="user-overview-item">
+        <a href="/adventure/{{adventure._id}}/apply">
+          <h2>Apply</h2>
+        </a>
+      </li>
+    {{/unless}}
   {{/if}}
-  {{#unless isApplied}}
-    <li id="mastery-overview" class="user-overview-item">
-      <a href="/adventure/{{adventure._id}}/apply">
-        <h2>Apply</h2>
-      </a>
-    </li>
-  {{/unless}}
 </ul>
