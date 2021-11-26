@@ -202,6 +202,48 @@ router.get("/me", async (req, res, next) => {
   }
 });
 
+router.post("/me", async (req, res, next) => {
+  const { _id } = req.session.keks;
+  const loggedIn = !!req.session.keks;
+  let { status } = req.body;
+  let atHome = true;
+  let statusUpdate = true;
+
+  try {
+    status = status.trim("");
+    let user = await User.findByIdAndUpdate(
+      _id,
+      { status },
+      { new: true }
+    ).populate("adventures");
+
+    user.adventures = await user.adventures
+      .filter((adventure) => {
+        return adventure.isActive == false;
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+    if (user.adventures.length >= 3) {
+      user.adventures = user.adventures.slice(0, user.adventures.length - 2);
+    }
+
+    await user.populate("adventures");
+
+    res.render("user/profile", { user, loggedIn, atHome, statusUpdate });
+  } catch (err) {
+    next(err);
+  }
+});
+
 /* ------ every Profile✅ ------ */
 router.get("/user/:_id", async (req, res, next) => {
   const { _id } = req.params;
@@ -274,9 +316,7 @@ router.get("/user/:_id/adventure", async (req, res) => {
   }
 
   try {
-    const user = await User.findById(_id, {
-      adventures: { $slice: 5 },
-    }).populate("adventures");
+    const user = await User.findById(_id).populate("adventures");
 
     user.adventures = user.adventures.filter((adventure) => {
       if (adventure.gameMasterId.toString() == _id) {
@@ -285,7 +325,6 @@ router.get("/user/:_id/adventure", async (req, res) => {
     });
 
     await user.populate("adventures");
-
     res.render("user/profileAdventures", { user, loggedIn, atHome });
   } catch (err) {
     res.sendStatus(400);
