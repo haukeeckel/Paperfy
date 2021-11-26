@@ -48,7 +48,13 @@
     <li class="user-data-item">{{adventure.expierience}}</li>
     <li class="user-data-item">{{adventure.plattform}}</li>
     {{#if isApplied}}
-      <li class="user-data-item">{{adventure.connection}}</li>
+      <li class="user-data-item">
+        {{#if adventure.connection}}
+        {{adventure.connection}}</li>
+        {{/if}}
+        {{#unless adventure.connection}}
+        <input disabled type="text" placeholder="Connection-ID missing!">
+        {{/unless}}
     {{/if}}
   {{#if adventure.minAge}}<li class="user-data-item">{{adventure.minAge}} years</li>{{/if}}
  </ul>
