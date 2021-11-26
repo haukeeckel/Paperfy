@@ -94,19 +94,21 @@ router.post("/signup/info", async (req, res, next) => {
   }
 
   try {
-    const user = await User.findByIdAndUpdate(_id, {
-      birthDate,
-      location,
-      playerExp,
-      gameMasterExp,
-      isGameMaster,
-      languages,
-    });
+    const user = await User.findByIdAndUpdate(
+      _id,
+      {
+        birthDate,
+        location,
+        playerExp,
+        gameMasterExp,
+        isGameMaster,
+        languages,
+      },
+      { new: true }
+    );
 
-    req.session.regenerate(() => {
-      req.session.keks = user;
-      res.redirect("/me");
-    });
+    req.session.keks = user;
+    res.redirect("/me");
   } catch (err) {
     next(err);
   }
@@ -175,6 +177,23 @@ router.get("/me", async (req, res, next) => {
   try {
     const user = await User.findById({ _id }).populate("adventures");
 
+    user.upcomingAdventures = JSON.parse(JSON.stringify(user.adventures));
+
+    user.upcomingAdventures = user.upcomingAdventures
+      .filter((adventure) => {
+        return Date.parse(adventure.startDate) > Date.now();
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
     user.adventures = await user.adventures
       .filter((adventure) => {
         return adventure.isActive == false;
@@ -214,6 +233,23 @@ router.get("/user/:_id", async (req, res, next) => {
 
   try {
     const user = await User.findById({ _id }).populate("adventures");
+
+    user.upcomingAdventures = JSON.parse(JSON.stringify(user.adventures));
+
+    user.upcomingAdventures = user.upcomingAdventures
+      .filter((adventure) => {
+        return Date.parse(adventure.startDate) > Date.now();
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
 
     user.adventures = await user.adventures
       .filter((adventure) => {
@@ -395,12 +431,12 @@ router.post("/me/edit", async (req, res, next) => {
         gameMasterExp,
         location,
         languages,
-      }
+      },
+      { new: true }
     );
-    await req.session.regenerate(() => {
-      req.session.keks = user;
-      res.redirect("/me");
-    });
+
+    req.session.keks = user;
+    res.redirect("/me");
   } catch (err) {
     next(err);
   }

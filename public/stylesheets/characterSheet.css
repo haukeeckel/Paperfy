@@ -51,3 +51,32 @@
   padding: 2rem 1rem;
   margin-block-start: 2rem;
 }
+
+.skillTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+}
+
+.infoLink {
+  height: 1.2rem;
+  width: auto;
+  order: 2;
+}
+
+.skillTitle label {
+  order: 1;
+}
+
+.skillText {
+  width: 70%;
+}
+
+.skillValue {
+  width: 20%;
+}
+
+#skillSection {
+  align-items: flex-start;
+}
