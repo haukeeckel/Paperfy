@@ -2,8 +2,19 @@
 
 <section id="user-overview-section" class="sec flex-clm-center">
   {{> adventureSubmenu}}
-
-
+      
+  {{#if adventure.isActive}}
+    {{#if isMyGame}}
+<div class="flex-row-center">
+    <form action="/adventure/edit/{{adventure._id}}" method="get">
+    <button>Edit</button>
+    </form>
+      <form action="/adventure/{{adventure._id}}/close" method="post">
+      <button>Close</button>
+    </form>
+</div>
+   {{/if}}
+  {{/if}}
 <div class="flex-clm-center adventureContainer"> 
   
 <h3>{{adventure.adventureName}}</h3>

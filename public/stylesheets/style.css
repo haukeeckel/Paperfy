@@ -79,8 +79,9 @@ a {
 /* Header */
 header {
   height: 4rem;
-  width: 100vw;
-  position: absolute;
+  width: 100%;
+  position: fixed;
+  top: 0;
   background-color: var(--mainColor);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -89,7 +90,7 @@ header {
 .header-nav {
   width: 33%;
   height: 4rem;
-  min-width: 28rem;
+  min-width: 40rem;
   justify-content: flex-start;
   flex-shrink: 0;
 }
@@ -102,7 +103,7 @@ header {
 }
 
 #header-title {
-  padding-right: 1rem;
+  padding-right: 2rem;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -115,22 +116,12 @@ header {
 
 .header-nav-item {
   display: inline-block;
-  padding: 0 0.5rem;
+  padding: 0 2rem;
   font-size: 1.3rem;
 }
 
 .header-nav-item:hover a {
   text-decoration: underline;
-}
-
-#header-searchbar-form {
-  width: 33%;
-  flex-shrink: 1;
-  justify-content: center;
-}
-
-#header-searchbar {
-  width: 100%;
 }
 
 #header-user-action {

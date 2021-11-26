@@ -3,8 +3,11 @@
   id="birthDate"
   name="birthDate"
   type="date"
-  placeholder="{{#if user.born}}{{user.born}}{{/if}}"
-  value="{{#if user.born}}{{user.born}}{{/if}}"
+  max="2015-01-01"
+  {{#if user.born}}
+  placeholder="{{user.born}}"
+  value="{{user.born}}"
+  {{/if}}
 />
 
 <label for="inputLanguages">What languages do you speak?</label>

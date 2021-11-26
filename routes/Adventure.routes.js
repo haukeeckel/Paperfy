@@ -13,6 +13,21 @@ const isGameMaster = (req, res, next) => {
   }
 };
 
+const isYourGame = async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.keks;
+  try {
+    let adventure = await Adventure.findById(id);
+    if (adventure.gameMasterId == _id) {
+      next();
+    } else {
+      res.redirect(`/adventure/${id}`);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 /* ------ Join ------ */
 router.get("/adventure/:id/apply", async (req, res) => {
   const { id } = req.params;
@@ -149,16 +164,6 @@ router.post("/adventure/:id/applicants/reject", async (req, res, next) => {
     await adventure.applicants.pull({ _id: applicantsId });
     await adventure.save();
     res.redirect(`/adventure/${id}/applicants`);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/adventure/:id/applicants/close", async (req, res, next) => {
-  const { id } = req.params;
-  try {
-    await Adventure.findByIdAndUpdate(id, { isActive: false });
-    res.redirect(`/adventure/${id}`);
   } catch (err) {
     next(err);
   }
@@ -330,53 +335,110 @@ router.post("/me/adventure/create", isGameMaster, async (req, res) => {
   }
 });
 
-router.get("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
-  const { _id } = req.params;
+router.get(
+  "/adventure/edit/:id",
+  isGameMaster,
+  isYourGame,
+  async (req, res, next) => {
+    const { id } = req.params;
+    const loggedIn = !!req.session.keks;
+    let isApplied = false;
+    let isMyGame = false;
+    let camCommun = false;
+    let _id;
 
-  try {
-    const adventure = await Adventure.findById(_id);
-    res.render("adventure/edit", adventure);
-  } catch (err) {
-    next(err);
-  }
-});
+    try {
+      let adventure = await Adventure.findById(id).populate("gameMasterId");
+      if (req.session.keks) {
+        _id = req.session.keks._id;
+        isApplied =
+          adventure.userIds.includes(_id) || adventure.gameMasterId._id == _id;
+        if (!isApplied) {
+          adventure.applicants.forEach((elem) => {
+            if (elem.userId == _id) {
+              isApplied = true;
+            }
+          });
+        }
 
-router.post("me/adventure/edit/:_id", isGameMaster, async (req, res, next) => {
-  const { _id } = req.params;
-  const {
-    gameMasterId,
-    adventureName,
-    gameSystem,
-    startDate,
-    groupSize,
-    plattform,
-    language,
-    expierience,
-    estimatedTime,
-    communication,
-    minAge,
-    plot,
-  } = req.body;
-
-  try {
-    const adventure = await Adventure.findByIdAndUpdate(
-      { _id },
-      {
-        gameMasterId,
-        adventureName,
-        gameSystem,
-        startDate,
-        groupSize,
-        plattform,
-        language,
-        expierience,
-        estimatedTime,
-        communication,
-        minAge,
-        plot,
+        isMyGame = adventure.gameMasterId._id == _id;
       }
-    );
-    res.status(200).json(adventure);
+      camCommun = adventure.communication == "Voice and Camera";
+      adventure.created = adventure.createdAt.toISOString().slice(0, 10);
+      adventure.start = adventure.startDate.toISOString().slice(0, 10);
+      adventure.time = adventure.startDate.toISOString().slice(11, 16);
+
+      if (adventure) {
+        res.render("adventure/edit", {
+          loggedIn,
+          adventure,
+          isApplied,
+          isMyGame,
+          camCommun,
+        });
+      } else {
+        res.sendStatus(400);
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+router.post(
+  "/adventure/edit/:id",
+  isGameMaster,
+  isYourGame,
+  async (req, res, next) => {
+    const { id } = req.params;
+    //  const { _id: gameMasterId } = req.session.keks;
+    const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
+    const startDate = new Date(startDateInput);
+
+    const {
+      adventureName,
+      gameSystem,
+      groupSize,
+      plattform,
+      language,
+      expierience,
+      estimatedTime,
+      communication,
+      minAge,
+      plot,
+      startTime,
+      startDate: prevInputDate,
+    } = req.body;
+
+    try {
+      await Adventure.findByIdAndUpdate(
+        { _id: id },
+        {
+          adventureName,
+          gameSystem,
+          startDate,
+          groupSize,
+          plattform,
+          language,
+          expierience,
+          estimatedTime,
+          communication,
+          minAge,
+          plot,
+        }
+      );
+      res.redirect(`/adventure/${id}`);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+router.post("/adventure/:id/close", isYourGame, async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await Adventure.findByIdAndUpdate(id, { isActive: false });
+    res.redirect(`/adventure/${id}`);
   } catch (err) {
     next(err);
   }

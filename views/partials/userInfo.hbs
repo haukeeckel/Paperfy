@@ -1,11 +1,32 @@
-<article class="user-description">
-  <h3>Describe yourself:</h3>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis dui
-    et convallis consequat. In venenatis tortor vitae nunc porttitor, auctor
-    elementum urna porttitor. Donec sodales mollis lacus vitae finibus. Fusce
-    tristique, turpis id fermentum accumsan, massa felis in.
-  </p>
+<article class="user-description statusForm">
+  {{#if atHome}}
+    <form action="/me" method="post">
+
+      <textarea
+        class="statusClass"
+        id="status"
+        name="status"
+        type="text"
+        placeholder="Here you can describe yourself and talk a bit about you."
+      >{{user.status}}</textarea>
+      <div class="flex-row-center">
+        {{#if statusUpdate}}
+          <p class="statusP">Status updated</p>
+        {{/if}}
+        <button id="updateButton" class="editButton">update</button>
+        {{#if statusUpdate}}
+          <p class="statusP" style="color:#ffc300;">Status updated</p>
+        {{/if}}
+      </div>
+    </form>
+  {{/if}}
+  {{#unless atHome}}
+    <h3>Describe yourself:</h3>
+    <p class="statusClass">
+      {{user.status}}
+    </p>
+  {{/unless}}
+
 </article>
 <article class="user-profil-showcase-container flex-row-center">
   {{#if user.upcomingAdventures}}
