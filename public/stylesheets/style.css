@@ -62,6 +62,14 @@ body {
   color: var(--blueGray);
   background-color: var(--lightGrey);
 }
+.scrollBar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollBar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 h2 {
   font-size: 1.5rem;
@@ -399,7 +407,7 @@ main {
 }
 
 .adventureListingHead p {
-  min-width: 33.9rem;
+  min-width: 100%;
   text-align: start;
 }
 
