@@ -31,9 +31,12 @@
     <li class="user-data-item">Next Date:</li>
     <li class="user-data-item">Starting Time:</li>
     <li class="user-data-item">Player:</li>
-    <li class="user-data-item">Platform:</li>
     <li class="user-data-item">Language:</li>
     <li class="user-data-item">Experience:</li>
+    <li class="user-data-item">Platform:</li>
+    {{#if isApplied}}
+      <li class="user-data-item">Connection:</li>
+    {{/if}}
     {{#if adventure.minAge}}<li class="user-data-item">Minimum Age:</li>{{/if}}
  </ul>
  <ul class="user-data-items">
@@ -41,9 +44,12 @@
     <li class="user-data-item">{{adventure.start}}</li>
     <li class="user-data-item">{{adventure.time}}</li>
     <li class="user-data-item">{{adventure.userIds.length}} / {{adventure.groupSize}}</li>
-    <li class="user-data-item">{{adventure.plattform}}</li>
     <li class="user-data-item">{{adventure.language}}</li>
     <li class="user-data-item">{{adventure.expierience}}</li>
+    <li class="user-data-item">{{adventure.plattform}}</li>
+    {{#if isApplied}}
+      <li class="user-data-item">{{adventure.connection}}</li>
+    {{/if}}
   {{#if adventure.minAge}}<li class="user-data-item">{{adventure.minAge}} years</li>{{/if}}
  </ul>
  </div>

@@ -79,6 +79,9 @@ const AdventureSchema = new Schema(
       enum: ["Voice only", "Voice and Camera"],
       required: true,
     },
+    connection: {
+      type: String,
+    },
     minAge: Number,
     plot: {
       type: String,

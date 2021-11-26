@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap");
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 :root {
   /* Font */
   --blueGray: #374957;
@@ -292,6 +304,17 @@ main {
   margin-block-start: 1rem;
   margin-block-end: 1rem;
   background-color: var(--accOrange);
+  border: var(--blueGray) 2px solid;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+.character-profil-showcase {
+  width: 40%;
+  height: 7rem;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  background-color: var(--accLightBlue);
   border: var(--blueGray) 2px solid;
   border-radius: 15px;
   padding: 0.5rem 1rem;

@@ -6,77 +6,152 @@
 
   <article class="user-profil-showcase-container flex-row-center">
     <h3 class="user-profil-showcase-title">Info:</h3>
-    <section class="character-info">
-      <article>
-        <h4>Name</h4>
-        <h4>{{character.characterName}}</h4>
-        <p>Gender</p>
-        <p>{{character.gender}}</p>
-        <p>Figure</p>
-        <p>{{character.figure}}</p>
-        <p>Age</p>
-        <p>{{character.age}}</p>
-        <p>Health Points</p>
-        <p>{{character.healthPoints}}</p>
-        <p>Religion</p>
-        <p>{{character.religion}}</p>
-        <p>Material Status</p>
-        <p>{{character.maritalStatus}}</p>
-        <p>Profession</p>
-        <p>{{character.profession}}</p>
-      </article>
-      <article>
-        <img src="{{character.portrait}}" alt="portrait" />
-      </article>
+    <section class="flex-row-center characterCreationSection">
+      <div>
+        <div class="flex-clm-center">
+            <label for="name">Enter your Characters Name</label>
+            <input
+            id="name"
+            name="characterName"
+            type="text"
+            placeholder="Name"
+            value="{{character.characterName}}"
+            disabled
+            />
+        </div>
+        <div class="flex-row-center">
+            <div class="flex-clm-center characterInputInfo">
+              <label for="gender">Gender</label>
+              <input
+                id="gender"
+                name="gender"
+                type="text"
+                placeholder="Gender"
+                value="{{character.gender}}"
+                disabled
+              />
+
+              <label for="figure">Figure</label>
+              <input
+                id="figure"
+                name="figure"
+                type="text"
+                placeholder="Figure"
+                value="{{character.figure}}"
+                disabled
+              />
+
+              <label for="profession">Profession</label>
+              <input
+                id="profession"
+                name="profession"
+                type="text"
+                placeholder="Profession"
+                value="{{character.profession}}"
+                disabled
+              />
+            </div>
+            <div class="flex-clm-center characterInputInfo">
+              <div class="flex-row-center">
+                <div class="flex-clm-center">
+                  <label for="age">Age</label>
+                  <input
+                    id="age"
+                    name="age"
+                    type="number"
+                    placeholder="Age"
+                    value="{{character.age}}"
+                    disabled
+                  />
+                </div>
+                <div class="flex-clm-center">
+                  <label for="healthPoints">Life Points</label>
+                  <input
+                    id="healthPoints"
+                    name="healthPoints"
+                    type="text"
+                    placeholder="Life Points"
+                    value="{{character.healthPoints}}"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <label for="religion">Religion</label>
+              <input
+                id="religion"
+                name="religion"
+                type="text"
+                placeholder="Religion"
+                value="{{character.religion}}"
+                disabled
+              />
+
+              <label for="maritalStatus">Marital Status</label>
+              <input
+                id="maritalStatus"
+                name="maritalStatus"
+                type="text"
+                placeholder="Material Status"
+                value="{{character.maritalStatus}}"
+                disabled
+              />
+            </div>
+        </div>
+      </div>
     </section>
-    <section class="character-properties">
-      <article>
-        <h4>physical</h4>
+    <section id="skillSection"  class="flex-row-center">
+      <article class="flex-clm-center characterSkillSection">
+        <div class ="skillTitle">
+          <a class="infoLink" href="https://howtobeahero.de/index.php?title=Handeln/en">
+            <img class="infoLink" src="/images/fi-br-info.png" alt="info" />
+          </a>
+          <label for="p1Key">Physical<label>
+        </div>
+
         {{#each character.physical}}
           {{#each this}}
-            <p>
-              <span>{{@key}}</span>
-              <span>{{this}}</span>
-            </p>
+          <div>
+            <input class="skillText" name="p1Key" type="text" value="{{@key}}" disabled/> 
+            <input class="skillValue" name="p1Value" value="{{this}}" type="number" disabled/>
+          </div>
           {{/each}}
         {{/each}}
-      </article>
-      <article>
-        <h4>knowledge</h4>
-        {{#each character.knowledge}}
+        </article>
+        <article class="flex-clm-center characterSkillSection">
+          <div class ="skillTitle">
+            <a class="infoLink" href="https://howtobeahero.de/index.php?title=Wissen/en">
+              <img class="infoLink" src="/images/fi-br-info.png" alt="info" />
+            </a>
+            <label for="k1Key">Knowledge<label>
+          </div>
+          <div>
+          {{#each character.knowledge}}
+            {{#each this}}
+              <div>
+                <input class="skillText" name="p1Key" type="text" value="{{@key}}" disabled/> 
+                <input class="skillValue" name="p1Value" value="{{this}}" type="number" disabled/>
+              </div>
+            {{/each}}
+          {{/each}}
+          </div>
+        </article>
+        <article class="flex-clm-center characterSkillSection">
+          <div class ="skillTitle">
+            <a class="infoLink" href="https://howtobeahero.de/index.php?title=Soziales/en">
+              <img class="infoLink" src="/images/fi-br-info.png" alt="info" />
+            </a>
+            <label for="s1Key">Social<label>
+          </div>
+          {{#each character.social}}
           {{#each this}}
-            <p>
-              <span>{{@key}}</span>
-              <span>{{this}}</span>
-            </p>
+          <div>
+            <input class="skillText" name="p1Key" type="text" value="{{@key}}" disabled/> 
+            <input class="skillValue" name="p1Value" value="{{this}}" type="number" disabled/>
+          </div>
           {{/each}}
-        {{/each}}
-      </article>
-      <article>
-        <h4>social</h4>
-        {{#each character.social}}
-          {{#each this}}
-          <p>
-            <span>{{@key}}</span>
-            <span>{{this}}</span>
-          </p>
           {{/each}}
-        {{/each}}
-      </article>
-    </section>
-    <section class="character-side-info">
-      <article>
-        <h4>Inventory</h4>
-        {{#each character.inventory}}
-          <p>{{this}}</p>
-        {{/each}}
-      </article>
-      <article>
-        <h4>Notes</h4>
-        {{#each character.notes}}
-          <p>{{this}}</p>
-        {{/each}}
-      </article>
-    </section>
+        </article>
+      </section>
   </article>
 </section>

@@ -195,6 +195,7 @@ router.get("/adventure/:id", async (req, res) => {
 
       isMyGame = adventure.gameMasterId._id == _id;
     }
+
     camCommun = adventure.communication == "Voice and Camera";
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
@@ -285,6 +286,7 @@ router.post("/me/adventure/create", isGameMaster, async (req, res) => {
     communication,
     plot,
     startTime,
+    connection,
     startDate: prevInputDate,
   } = req.body;
 
@@ -302,9 +304,11 @@ router.post("/me/adventure/create", isGameMaster, async (req, res) => {
       estimatedTime,
       communication,
       plot,
+      connection,
       startDate,
       portrait,
     });
+
     await User.findByIdAndUpdate(gameMasterId, {
       $push: { adventures: adventure._id },
     });
@@ -325,6 +329,7 @@ router.post("/me/adventure/create", isGameMaster, async (req, res) => {
       plot,
       prevInputDate,
       loggedIn: true,
+      connection,
       startTime,
     });
   }
