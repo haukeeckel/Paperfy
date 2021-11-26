@@ -199,7 +199,9 @@ router.get("/adventure/:id", async (req, res) => {
     camCommun = adventure.communication == "Voice and Camera";
     adventure.created = adventure.createdAt.toISOString().slice(0, 10);
     adventure.start = adventure.startDate.toISOString().slice(0, 10);
-    adventure.time = adventure.startDate.toISOString().slice(11, 16);
+    adventure.time = new Date(Date.parse(adventure.startDate) + 60 * 60 * 1000)
+      .toISOString()
+      .slice(11, 16);
 
     if (adventure) {
       res.render("adventure/profil", {
@@ -366,7 +368,11 @@ router.get(
       camCommun = adventure.communication == "Voice and Camera";
       adventure.created = adventure.createdAt.toISOString().slice(0, 10);
       adventure.start = adventure.startDate.toISOString().slice(0, 10);
-      adventure.time = adventure.startDate.toISOString().slice(11, 16);
+      adventure.time = new Date(
+        Date.parse(adventure.startDate) + 60 * 60 * 1000
+      )
+        .toISOString()
+        .slice(11, 16);
 
       if (adventure) {
         res.render("adventure/edit", {

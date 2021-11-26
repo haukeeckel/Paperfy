@@ -315,3 +315,7 @@
   background-color: #ffc300;
   max-width: 40rem;
 }
+
+.li-padding {
+  line-height: 25px;
+}
