@@ -61,16 +61,13 @@ input[type="number"] {
 body {
   color: var(--blueGray);
   background-color: var(--lightGrey);
-  overflow-y: hidden;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.example::-webkit-scrollbar {
+.scrollBar::-webkit-scrollbar {
   display: none;
 }
-
 /* Hide scrollbar for IE, Edge and Firefox */
-.example {
+.scrollBar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -411,7 +408,7 @@ main {
 }
 
 .adventureListingHead p {
-  min-width: 33.9rem;
+  min-width: 100%;
   text-align: start;
 }
 
