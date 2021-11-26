@@ -406,6 +406,7 @@ router.post(
       communication,
       minAge,
       plot,
+      connection,
       startTime,
       startDate: prevInputDate,
     } = req.body;
@@ -423,6 +424,7 @@ router.post(
           expierience,
           estimatedTime,
           communication,
+          connection,
           minAge,
           plot,
         }

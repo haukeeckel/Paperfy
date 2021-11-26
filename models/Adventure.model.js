@@ -81,6 +81,7 @@ const AdventureSchema = new Schema(
     },
     connection: {
       type: String,
+      default: " ",
     },
     minAge: Number,
     plot: {
