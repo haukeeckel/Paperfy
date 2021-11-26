@@ -62,6 +62,7 @@ body {
   color: var(--blueGray);
   background-color: var(--lightGrey);
 }
+
 .scrollBar::-webkit-scrollbar {
   display: none;
 }
