@@ -113,9 +113,9 @@ router.post("/me/character/create", loggedIn, async (req, res) => {
 
   for (let i = 0; i <= skills.length; i = i + 2) {
     if (skills[i] != "") {
-      if (i <= 10) {
+      if (i <= 18) {
         physical[skills[i]] = skills[i + 1];
-      } else if (i <= 20) {
+      } else if (i <= 38) {
         knowledge[skills[i]] = skills[i + 1];
       } else {
         social[skills[i]] = skills[i + 1];
