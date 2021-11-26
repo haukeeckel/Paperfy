@@ -236,6 +236,23 @@ router.post("/me", async (req, res, next) => {
       { new: true }
     ).populate("adventures");
 
+    user.upcomingAdventures = JSON.parse(JSON.stringify(user.adventures));
+
+    user.upcomingAdventures = user.upcomingAdventures
+      .filter((adventure) => {
+        return Date.parse(adventure.startDate) > Date.now();
+      })
+      .sort((a, b) => {
+        if (a.startDate < b.startDate) {
+          return -1;
+        }
+        if (a.startDate > b.startDate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
     user.adventures = await user.adventures
       .filter((adventure) => {
         return adventure.isActive == false;

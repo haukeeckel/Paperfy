@@ -6,12 +6,15 @@
 
   <article class="user-profil-showcase-container flex-row-center">
     <h3 class="user-profil-showcase-title">
-      Member:
+     Game Master:
     </h3>
     <a href="/user/{{adventure.gameMasterId._id}}"
         class="user-profil-showcase">
         {{adventure.gameMasterId.username}}
     </a>
+        <h3 class="user-profil-showcase-title">
+     Player:
+    </h3>
     {{#each adventure.participantIds}}
       <a href="/character/{{this._id}}"
         class="user-profil-showcase">

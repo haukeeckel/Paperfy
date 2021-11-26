@@ -391,7 +391,6 @@ router.post(
   isYourGame,
   async (req, res, next) => {
     const { id } = req.params;
-    //  const { _id: gameMasterId } = req.session.keks;
     const startDateInput = `${req.body.startDate}T${req.body.startTime}:00`;
     const startDate = new Date(startDateInput);
 
@@ -406,6 +405,7 @@ router.post(
       communication,
       minAge,
       plot,
+      connection,
       startTime,
       startDate: prevInputDate,
     } = req.body;
@@ -423,6 +423,7 @@ router.post(
           expierience,
           estimatedTime,
           communication,
+          connection,
           minAge,
           plot,
         }

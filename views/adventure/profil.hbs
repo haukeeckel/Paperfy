@@ -30,12 +30,12 @@
     <li class="user-data-item">Game System:</li>
     <li class="user-data-item">Next Date:</li>
     <li class="user-data-item">Starting Time:</li>
-    <li class="user-data-item">Player:</li>
+    <li class="user-data-item">Group Size:</li>
     <li class="user-data-item">Language:</li>
     <li class="user-data-item">Experience:</li>
     <li class="user-data-item">Platform:</li>
     {{#if isApplied}}
-      <li class="user-data-item">Connection:</li>
+      <li class="user-data-item">Connection-ID:</li>
     {{/if}}
     {{#if adventure.minAge}}<li class="user-data-item">Minimum Age:</li>{{/if}}
  </ul>
@@ -48,12 +48,19 @@
     <li class="user-data-item">{{adventure.expierience}}</li>
     <li class="user-data-item">{{adventure.plattform}}</li>
     {{#if isApplied}}
-      <li class="user-data-item">{{adventure.connection}}</li>
+      <li class="user-data-item">
+        {{#if adventure.connection}}
+        {{adventure.connection}}</li>
+        {{/if}}
+        {{#unless adventure.connection}}
+        <input disabled type="text" placeholder="Connection-ID missing!">
+        {{/unless}}
     {{/if}}
   {{#if adventure.minAge}}<li class="user-data-item">{{adventure.minAge}} years</li>{{/if}}
  </ul>
  </div>
  </div>
+ <p class="user-data-item">Plot:</p>
  <p class ="adventureP">{{adventure.plot}}</p>
  </div> 
 </section>

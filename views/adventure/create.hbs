@@ -18,7 +18,7 @@
           <li class="user-data-item">Language:</li>
           <li class="user-data-item">Experience:</li>
           <li class="user-data-item">Platform:</li>
-          <li class="user-data-item">Connection:</li>
+          <li class="user-data-item">Connection-ID:</li>
           <li class="user-data-item">Estimated Time (min):</li>
           <li class="user-data-item">Communication:</li>
 
@@ -80,9 +80,9 @@
               id="connection"
               name="connection"
               type="text"
-              value="{{prevInputDate}}"
+              placeholder="only visible for group"
+              value="{{connection}}"
             />
-            </select>
           </li>
           <li class="user-data-item"><input
               id="estimatedTime"
@@ -112,6 +112,7 @@
                     name="plot"
                     type="text"
                     maxlength="280"
+                    placeholder="Here you can write about the setting of the adventure."
                     value="plot"/></textarea>
             <button class="filterButton skipLink" style="display: block;">Create</button>
         </div>
